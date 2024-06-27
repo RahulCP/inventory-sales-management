@@ -1,0 +1,32 @@
+{
+  "sales": [
+    {
+      "itemCode": "ANjana",
+      "salesDate": "2024-06-27",
+      "price": "34",
+      "buyerDetails": "cdfdfd",
+      "id": 1719416412199
+    },
+    {
+      "itemCode": "Rahul",
+      "salesDate": "2024-06-19",
+      "price": "22",
+      "buyerDetails": "23323",
+      "id": 1719416423509
+    },
+    {
+      "itemCode": "ANjana",
+      "salesDate": "2024-06-19",
+      "price": "34",
+      "buyerDetails": "2232",
+      "id": 1719417815599
+    },
+    {
+      "itemCode": "Majesk NC 20",
+      "salesDate": "2024-06-25",
+      "price": "567",
+      "buyerDetails": "dsds",
+      "id": 1719418760475
+    }
+  ]
+}
