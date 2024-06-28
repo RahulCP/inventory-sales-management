@@ -2,42 +2,83 @@
   "sales": [
     {
       "itemCodes": [
-        "Rahul"
+        "sdds"
       ],
       "quantities": {
-        "Rahul": 1
+        "sdds": 1
       },
-      "salesDate": "2024-06-27",
-      "price": "2",
-      "buyerDetails": "223",
-      "id": 1719482231897
+      "salesDate": "2024-06-05",
+      "price": "4545",
+      "buyerDetails": "45454",
+      "phoneNumber": "45454",
+      "region": "",
+      "note": "4545",
+      "salesStatus": "SD",
+      "systemDate": "2024-06-28T06:47:37.242Z",
+      "giveAway": false,
+      "id": 1719551467749,
+      "shipmentDate": "2024-06-20",
+      "shipmentPrice": "45",
+      "shipmentMethod": "Air",
+      "trackingId": "zZ"
     },
     {
       "itemCodes": [
-        "dsdsd"
+        "rahul"
       ],
       "quantities": {
-        "dsdsd": 1
+        "rahul": 1
       },
-      "salesDate": "2024-06-28",
-      "price": "23",
-      "buyerDetails": "2323",
-      "id": 1719483250647
+      "salesDate": "2024-06-19",
+      "price": "2000",
+      "buyerDetails": "asa",
+      "phoneNumber": "2323",
+      "region": "",
+      "note": "sds",
+      "salesStatus": "SD",
+      "systemDate": "2024-06-28T06:53:47.464Z",
+      "giveAway": false,
+      "id": 1719551589853,
+      "shipmentDate": "2024-06-20",
+      "shipmentPrice": "56",
+      "shipmentMethod": "Air",
+      "trackingId": "www"
     },
     {
       "itemCodes": [
-        "Rahul"
+        "qwqwqwqw"
       ],
       "quantities": {
-        "Rahul": 5
+        "qwqwqwqw": 1
       },
-      "salesDate": "2024-06-28",
+      "salesDate": "2024-06-19",
+      "price": "60",
+      "buyerDetails": "",
+      "phoneNumber": "34",
+      "region": "",
+      "note": "",
+      "salesStatus": "SP",
+      "systemDate": "2024-06-28T05:28:08.952Z",
+      "giveAway": false,
+      "id": 1719552488952
+    },
+    {
+      "itemCodes": [
+        "qwqwqwqw"
+      ],
+      "quantities": {
+        "qwqwqwqw": 1
+      },
+      "salesDate": "2024-06-18",
       "price": "35",
-      "buyerDetails": "wewew",
-      "phoneNumber": "2323232",
-      "region": "South",
-      "note": "23232",
-      "id": 1719483900183
+      "buyerDetails": "",
+      "phoneNumber": "",
+      "region": "",
+      "note": "",
+      "salesStatus": "SP",
+      "systemDate": "2024-06-28T05:28:21.570Z",
+      "giveAway": false,
+      "id": 1719552501570
     }
   ]
 }

@@ -28,7 +28,8 @@ const InventoryPage = () => {
     const fetchData = async () => {
         try {
             const itemResponse = await axios.get('http://localhost:5001/api/inventory/items');
-            setItems(itemResponse.data);
+            const sortedItems = itemResponse.data.sort((a, b) => new Date(b.systemDate) - new Date(a.systemDate));
+            setItems(sortedItems);
 
             const imageResponse = await axios.get('http://localhost:5001/api/images');
             setImagesTree(imageResponse.data);
@@ -45,9 +46,13 @@ const InventoryPage = () => {
 
     const handleAdd = () => {
         if (!isEditing) {
-            const newItem = { ...form, id: Date.now() };
+            const newItem = { 
+                ...form, 
+                id: Date.now(),
+                systemDate: new Date().toISOString() // Setting the system date and time
+            };
             axios.post('http://localhost:5001/api/inventory/items', newItem).then(() => {
-                setItems([...items, newItem]);
+                fetchData();
                 resetForm();
             });
         } else {
@@ -64,15 +69,14 @@ const InventoryPage = () => {
 
     const handleUpdate = () => {
         axios.put(`http://localhost:5001/api/inventory/items/${editId}`, form).then(() => {
-            const updatedItems = items.map(item => (item.id === editId ? form : item));
-            setItems(updatedItems);
+            fetchData();
             resetForm();
         });
     };
 
     const handleDelete = (id) => {
         axios.delete(`http://localhost:5001/api/inventory/items/${id}`).then(() => {
-            setItems(items.filter(item => item.id !== id));
+            fetchData();
         });
     };
 
@@ -129,8 +133,6 @@ const InventoryPage = () => {
         <div className="container">
             <h1>Inventory Management</h1>
             <form className="mb-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-                {/* Form content structured into three columns */}
-                {/* Form groups and button */}
                 <div className="form-group">
                     <label>Item Code</label>
                     <input type="text" name="itemCode" value={form.itemCode} onChange={handleChange} placeholder="Item Code" className="form-control" />

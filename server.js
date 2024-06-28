@@ -9,9 +9,11 @@ const server = jsonServer.create();
 const inventoryFilePath = path.join(__dirname, 'src/data', 'inventory.json');
 const salesFilePath = path.join(__dirname, 'src/data', 'sales.json');
 
+
 // Create separate routers for each JSON file
 const inventoryRouter = jsonServer.router(inventoryFilePath);
 const salesRouter = jsonServer.router(salesFilePath);
+
 
 const middlewares = jsonServer.defaults();
 

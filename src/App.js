@@ -4,17 +4,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InventoryPage from './components/Inventory';
 import SalesPage from './components/SalesRecord';
 import NavBar from './components/NavigationBar';
+import ShipmentPage from './components/shipment';
+import AnalyticsPage from './components/Analytics';
 
-const App = () => {
+function App() {
     return (
         <Router>
             <NavBar />
             <Routes>
-                <Route exact path="/" element={<InventoryPage />} />
+                <Route path="/" element={<InventoryPage />} />
                 <Route path="/sales" element={<SalesPage />} />
+                <Route path="/shipment" element={<ShipmentPage />} />
+                <Route path="/analytics" element={<AnalyticsPage />} />
             </Routes>
         </Router>
     );
-};
+}
 
 export default App;

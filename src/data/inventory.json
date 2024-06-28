@@ -1,52 +1,74 @@
 {
   "items": [
     {
-      "itemCode": "Rahul",
-      "itemCategory": "sdsfd",
-      "itemStyle": "dfdf",
-      "purchaseDate": "2024-06-27",
-      "price": "34",
-      "quantity": "34",
-      "image": "http://localhost:5001/images/Set2/microbiome99.png",
-      "id": 1719473384492
-    },
-    {
-      "itemCode": "dsdsd",
-      "itemCategory": "Electronics",
-      "itemStyle": "Vintage",
-      "color": "Blue",
-      "type": "Stationary",
-      "size": "Medium",
-      "purchaseDate": "2024-06-27",
-      "price": "34",
-      "quantity": "22",
-      "image": "http://localhost:5001/images/Set2/microbiome99.png",
-      "id": 1719474097298
-    },
-    {
       "itemCode": "sdds",
+      "itemCategory": "Furniture",
+      "itemStyle": "Modern",
+      "color": "Blue",
+      "type": "Stationary",
+      "size": "Small",
+      "purchaseDate": "2024-06-20",
+      "price": "3443",
+      "quantity": "23",
+      "image": "",
+      "id": 1719507488188,
+      "systemDate": "2024-06-27T16:58:08.188Z"
+    },
+    {
+      "itemCode": "qwqwqwqw",
       "itemCategory": "Electronics",
       "itemStyle": "Vintage",
       "color": "Blue",
       "type": "Stationary",
       "size": "Medium",
-      "purchaseDate": "2024-06-27",
-      "price": "3",
-      "quantity": "3",
-      "id": 1719474505416
+      "purchaseDate": "2024-06-20",
+      "price": "22",
+      "quantity": "2",
+      "image": "",
+      "id": 1719507769117,
+      "systemDate": "2024-06-27T17:02:49.117Z"
     },
     {
-      "itemCode": "Manoj",
-      "itemCategory": "Electronics",
-      "itemStyle": "Classic",
-      "color": "Red",
+      "itemCode": "kelpok",
+      "itemCategory": "Furniture",
+      "itemStyle": "Modern",
+      "color": "Blue",
       "type": "Stationary",
       "size": "Medium",
       "purchaseDate": "2024-06-20",
       "price": "34",
-      "quantity": "12",
+      "quantity": "44",
+      "image": "",
+      "id": 1719507791830,
+      "systemDate": "2024-06-27T17:03:11.830Z"
+    },
+    {
+      "itemCode": "rahul",
+      "itemCategory": "Furniture",
+      "itemStyle": "Vintage",
+      "color": "Blue",
+      "type": "Stationary",
+      "size": "Medium",
+      "purchaseDate": "2024-06-28",
+      "price": "34",
+      "quantity": "4",
+      "image": "",
+      "id": 1719507857751,
+      "systemDate": "2024-06-27T17:04:17.751Z"
+    },
+    {
+      "itemCode": "sdfdfd555",
+      "itemCategory": "Furniture",
+      "itemStyle": "Modern",
+      "color": "Blue",
+      "type": "Stationary",
+      "size": "Medium",
+      "purchaseDate": "2024-06-14",
+      "price": "5",
+      "quantity": "4",
       "image": "http://localhost:5001/images/Set2/microbiome99.png",
-      "id": 1719479161187
+      "id": 1719507881451,
+      "systemDate": "2024-06-27T17:04:41.451Z"
     }
   ]
 }
