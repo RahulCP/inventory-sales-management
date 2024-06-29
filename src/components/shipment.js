@@ -96,7 +96,7 @@ const ShipmentPage = () => {
         <div>
             <h1>Shipment Details</h1>
             {sales.filter(sale => sale.salesStatus === 'SP').map(sale => (
-                <div key={sale.id} style={{ border: '1px solid gray', padding: '10px', marginBottom: '10px' }}>
+                <div key={sale.id} className="shipment-detail">
                     <h2>Sale ID: {sale.id}</h2>
                     <p>Item Codes: {sale.itemCodes.join(", ")}</p>
                     <p>Buyer Details: {sale.buyerDetails}</p>
@@ -106,6 +106,7 @@ const ShipmentPage = () => {
                         value={shipmentDetails[sale.id]?.shipmentDate || ''}
                         onChange={(e) => handleShipmentChange(e, sale.id)}
                         placeholder="Shipment Date"
+                        className="form-control"
                     />
                     <input
                         type="text"
@@ -113,11 +114,13 @@ const ShipmentPage = () => {
                         value={shipmentDetails[sale.id]?.shipmentPrice || ''}
                         onChange={(e) => handleShipmentChange(e, sale.id)}
                         placeholder="Shipment Price"
+                        className="form-control"
                     />
                     <select
                         name="shipmentMethod"
                         value={shipmentDetails[sale.id]?.shipmentMethod || ''}
                         onChange={(e) => handleShipmentChange(e, sale.id)}
+                        className="form-control"
                     >
                         <option value="">Select Method</option>
                         <option value="Ground">Ground</option>
@@ -130,15 +133,16 @@ const ShipmentPage = () => {
                         value={shipmentDetails[sale.id]?.trackingId || ''}
                         onChange={(e) => handleShipmentChange(e, sale.id)}
                         placeholder="Tracking ID"
+                        className="form-control"
                     />
-                    <button onClick={() => handleSubmit(sale.id)}>Update Shipment</button>
+                    <button onClick={() => handleSubmit(sale.id)} className="btn btn-primary">Update Shipment</button>
                 </div>
             ))}
 
             <h1>Shipment Completed</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            <div className="shipment-completed">
                 {sales.filter(sale => sale.salesStatus === 'SD').map(sale => (
-                    <div key={sale.id} style={{ border: '1px solid gray', padding: '10px', margin: '10px', flex: '1 1 calc(33.333% - 20px)' }}>
+                    <div key={sale.id} className="shipment-item">
                         <h2>Sale ID: {sale.id}</h2>
                         <p>Item Codes: {sale.itemCodes.join(", ")}</p>
                         <p>Buyer Details: {sale.buyerDetails}</p>
@@ -150,33 +154,20 @@ const ShipmentPage = () => {
                             <img 
                                 src={sale.shipmentImage} 
                                 alt="Shipment" 
-                                style={{ maxWidth: '100px', marginTop: '10px', cursor: 'pointer' }} 
+                                className="shipment-image"
                                 onClick={() => handleImageClick(sale.shipmentImage)}
                             />
                         )}
-                        <button onClick={() => handleRevert(sale.id)}>Revert</button>
+                        <button onClick={() => handleRevert(sale.id)} className="btn btn-warning">Revert</button>
                     </div>
                 ))}
             </div>
 
             {enlargedImage && (
-                <div 
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }}
-                    onClick={handleCloseImage}
-                >
-                    <div style={{ width: '30%', backgroundColor: 'white', padding: '20px', position: 'relative' }}>
-                        <button onClick={handleCloseImage} style={{ position: 'absolute', top: '10px', right: '10px' }}>Close</button>
-                        <img src={enlargedImage} alt="Enlarged" style={{ width: '100%' }} />
+                <div className="overlay" onClick={handleCloseImage}>
+                    <div className="overlay-content">
+                        <img src={enlargedImage} alt="Enlarged" className="enlarged-image" />
+                        <button onClick={handleCloseImage} className="btn btn-close">Close</button>
                     </div>
                 </div>
             )}

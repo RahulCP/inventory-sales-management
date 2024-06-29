@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InventoryPage from './components/Inventory';
@@ -10,6 +9,7 @@ import AnalyticsPage from './components/Analytics';
 function App() {
     return (
         <Router>
+            <div class="container">
             <NavBar />
             <Routes>
                 <Route path="/" element={<InventoryPage />} />
@@ -17,6 +17,7 @@ function App() {
                 <Route path="/shipment" element={<ShipmentPage />} />
                 <Route path="/analytics" element={<AnalyticsPage />} />
             </Routes>
+            </div>
         </Router>
     );
 }

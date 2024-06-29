@@ -123,14 +123,14 @@ const SalesPage = () => {
     };
 
     return (
-        <div className="container" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <div className="column" style={{ flex: 1, padding: '10px' }}>
+        <div>
+            <div className="sales-form">
                 <h1>Sales Record</h1>
                 <form>
-                    <div>
+                    <div className="form-group">
                         <label>Select Item Codes:</label>
                         {items.map(item => (
-                            <div key={item.id} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                            <div key={item.id} className="item-selection">
                                 <input 
                                     type="checkbox" 
                                     name="itemCodes" 
@@ -138,9 +138,9 @@ const SalesPage = () => {
                                     checked={form.itemCodes.includes(item.itemCode)} 
                                     onChange={handleChange}
                                 />
-                                <span style={{ marginRight: '10px' }}>{item.itemCode}</span>
+                                <span className="item-code">{item.itemCode}</span>
                                 {item.image && (
-                                    <img src={item.image} alt="Item" style={{ width: '50px', height: '50px', marginRight: '10px', cursor: 'pointer' }} onClick={() => handleImageClick(item.image)} />
+                                    <img src={item.image} alt="Item" className="item-thumbnail" onClick={() => handleImageClick(item.image)} />
                                 )}
                                 {form.itemCodes.includes(item.itemCode) && (
                                     <input 
@@ -148,69 +148,85 @@ const SalesPage = () => {
                                         name={`quantity-${item.itemCode}`} 
                                         value={form.quantities[item.itemCode] || 1}
                                         onChange={handleChange}
-                                        style={{ marginLeft: '10px' }}
+                                        className="item-quantity"
                                     />
                                 )}
                             </div>
                         ))}
                     </div>
-
-                    <input type="date" name="salesDate" value={form.salesDate} onChange={handleChange} />
-                    <input 
-                        type="number" 
-                        name="price" 
-                        value={form.price} 
-                        onChange={handleChange} 
-                        placeholder="Price" 
-                        disabled={form.giveAway} // Disable if giveAway is checked
-                    />
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div className="form-group">
+                        <input type="date" name="salesDate" value={form.salesDate} onChange={handleChange} className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <input 
+                            type="number" 
+                            name="price" 
+                            value={form.price} 
+                            onChange={handleChange} 
+                            placeholder="Price" 
+                            className="form-control" 
+                            disabled={form.giveAway} // Disable if giveAway is checked
+                        />
+                    </div>
+                    <div className="form-group form-check">
                         <input 
                             type="checkbox" 
                             name="giveAway" 
                             checked={form.giveAway} 
                             onChange={handleChange} 
-                            style={{ marginRight: '10px' }}
+                            className="form-check-input"
                         />
-                        <label>Give Away</label>
+                        <label className="form-check-label">Give Away</label>
                     </div>
-                    <textarea name="buyerDetails" value={form.buyerDetails} onChange={handleChange} placeholder="Buyer Details" rows="3" />
-                    <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" />
-                    <select name="region" value={form.region} onChange={handleChange}>
-                        <option value="">Select Region</option>
-                        <option value="North">North</option>
-                        <option value="South">South</option>
-                        <option value="West">West</option>
-                    </select>
-                    <textarea name="note" value={form.note} onChange={handleChange} placeholder="Notes" rows="3" />
+                    <div className="form-group">
+                        <textarea name="buyerDetails" value={form.buyerDetails} onChange={handleChange} placeholder="Buyer Details" rows="3" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <select name="region" value={form.region} onChange={handleChange} className="form-control">
+                            <option value="">Select Region</option>
+                            <option value="North">North</option>
+                            <option value="South">South</option>
+                            <option value="West">West</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <textarea name="note" value={form.note} onChange={handleChange} placeholder="Notes" rows="3" className="form-control" />
+                    </div>
                     {isEditing ? (
-                        <button type="button" onClick={handleUpdate}>Update Sale</button>
+                        <button type="button" onClick={handleUpdate} className="btn btn-warning">Update Sale</button>
                     ) : (
-                        <button type="button" onClick={handleAdd}>Add Sale</button>
+                        <button type="button" onClick={handleAdd} className="btn btn-primary">Add Sale</button>
                     )}
                 </form>
             </div>
-            <div className="column" style={{ flex: 1, padding: '10px' }}>
+            <div className="sales-list">
                 <h4>Sales List</h4>
-                <ul>
+                <ul className="list-group">
                     {sales
                         .filter(sale => sale.salesStatus === 'SP')
                         .sort((a, b) => new Date(b.systemDate) - new Date(a.systemDate))
                         .map(sale => (
-                            <li key={sale.id}>
-                                {sale.itemCodes.map(code => `${code}: ${sale.quantities[code] || 1}`).join(", ")} - 
-                                {sale.salesDate} - {sale.price} - {sale.buyerDetails} - {sale.salesStatus}
-                                <button onClick={() => handleEdit(sale.id)}>Edit</button>
-                                <button onClick={() => handleDelete(sale.id)}>Delete</button>
+                            <li key={sale.id} className="list-group-item">
+                                <div>
+                                    {sale.itemCodes.map(code => `${code}: ${sale.quantities[code] || 1}`).join(", ")} - 
+                                    {sale.salesDate} - {sale.price} - {sale.buyerDetails} - {sale.salesStatus}
+                                </div>
+                                <div>
+                                    <button onClick={() => handleEdit(sale.id)} className="btn btn-sm btn-warning">Edit</button>
+                                    <button onClick={() => handleDelete(sale.id)} className="btn btn-sm btn-danger">Delete</button>
+                                </div>
                             </li>
                         ))}
                 </ul>
             </div>
             {enlargedImage && (
-                <div className="overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ position: 'relative', textAlign: 'center', width: '30%', height: '30%' }}>
-                        <img src={enlargedImage} alt="Enlarged" style={{ maxHeight: '100%', maxWidth: '100%' }} />
-                        <button onClick={closeEnlargedImage} style={{ position: 'absolute', top: '10px', right: '10px', background: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer' }}>Close</button>
+                <div className="overlay" onClick={closeEnlargedImage}>
+                    <div className="overlay-content">
+                        <img src={enlargedImage} alt="Enlarged" className="enlarged-image" />
+                        <button onClick={closeEnlargedImage} className="btn btn-close">Close</button>
                     </div>
                 </div>
             )}

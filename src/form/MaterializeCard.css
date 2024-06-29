@@ -1,0 +1,26 @@
+.small-card-row {
+    margin-bottom: 25px; /* Adjust margin as needed */
+  }
+  
+  .small-card {
+    margin: 5px; /* Adjust margin as needed */
+    padding: 10px; /* Adjust padding as needed */
+  }
+  
+  .card-image-fixed {
+    width: 100%; /* Ensure the image takes full width of its container */
+    height: 200px; /* Set a fixed height for the image */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire area */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+  }
+  
+  .small-card-title {
+    font-size: 1.2rem; /* Adjust font size as needed */
+  }
+  
+  .small-card-content {
+    font-size: 0.9rem; /* Adjust font size as needed */
+    padding: 10px; /* Adjust padding as needed */
+  }
+  

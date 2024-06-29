@@ -127,12 +127,12 @@ const AnalyticsPage = () => {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Analytics Page</h1>
             <div className="tabs">
-                <button onClick={() => handleTabClick('salesPrice')}>Sales Price</button>
-                <button onClick={() => handleTabClick('salesCount')}>Sales Count</button>
-                <button onClick={() => handleTabClick('shipmentStatus')}>Shipment Status</button>
+                <button className={`btn ${activeTab === 'salesPrice' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesPrice')}>Sales Price</button>
+                <button className={`btn ${activeTab === 'salesCount' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesCount')}>Sales Count</button>
+                <button className={`btn ${activeTab === 'shipmentStatus' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('shipmentStatus')}>Shipment Status</button>
             </div>
 
             {activeTab === 'salesPrice' && (
