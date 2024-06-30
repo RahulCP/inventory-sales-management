@@ -7,34 +7,54 @@ import MoneyInput from './../form/MoneyInput';
 import NumberInput from './../form/NumberInput';
 import DatePicker from './../form/DatePicker';
 import InputButton from './../form/InputButton';
-import MaterializeCard from './../form/MaterializeCard'; 
+import MaterializeCard from './../form/MaterializeCard';
+import './App.css';
 
 const dropdownOptions = {
     itemCategory: [
-        { key: 'electronics', value: 'Electronics' },
-        { key: 'furniture', value: 'Furniture' },
-        { key: 'clothing', value: 'Clothing' }
+        { key: '1', value: 'Necklace' },
+        { key: '2', value: 'Choker' },
+        { key: '3', value: 'Jumka' },
+        { key: '4', value: 'Bangle' },
+        { key: '5', value: 'Maala' }
     ],
     itemStyle: [
-        { key: 'modern', value: 'Modern' },
-        { key: 'vintage', value: 'Vintage' },
-        { key: 'classic', value: 'Classic' }
+        { key: '1', value: 'Antique' },
+        { key: '2', value: 'American Diamond' }
     ],
     color: [
-        { key: 'red', value: 'Red' },
-        { key: 'blue', value: 'Blue' },
-        { key: 'green', value: 'Green' }
+        { key: '1', value: 'Mixed' },
+        { key: '2', value: 'Red' },
+        { key: '3', value: 'Green' },
+        { key: '4', value: 'Gold' },
+        { key: '5', value: 'white' }
     ],
     type: [
-        { key: 'portable', value: 'Portable' },
-        { key: 'stationary', value: 'Stationary' },
-        { key: 'expandable', value: 'Expandable' }
+        { key: '1', value: 'Copper' },
+        { key: '2', value: 'Brass' },
+        { key: '3', value: 'Alloy' }
     ],
     size: [
-        { key: 'small', value: 'Small' },
-        { key: 'medium', value: 'Medium' },
-        { key: 'large', value: 'Large' }
+        { key: '1', value: '24' },
+        { key: '2', value: '26' },
+        { key: '3', value: '28' }
     ]
+};
+
+const formToItemMap = {
+    itemCode: 'code',
+    itemCategory: 'category',
+    itemStyle: 'style',
+    color: 'color',
+    type: 'type',
+    size: 'size',
+    purchaseDate: 'date',
+    price: 'price',
+    quantity: 'quantity',
+    image: 'image',
+    publish: 'publish',
+    publishedDate: 'publishedDate',
+    boxNo: 'boxNo'
 };
 
 const InventoryPage = () => {
@@ -52,7 +72,10 @@ const InventoryPage = () => {
         purchaseDate: '',
         price: '',
         quantity: '',
-        image: ''
+        image: '',
+        publish: false,
+        publishedDate: '',
+        boxNo: ''
     });
     const [isEditing, setIsEditing] = useState(false);
     const [editId, setEditId] = useState(null);
@@ -77,8 +100,8 @@ const InventoryPage = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+        const { name, value, type, checked } = e.target;
+        setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
     };
 
     const handleAdd = () => {
@@ -115,7 +138,8 @@ const InventoryPage = () => {
     };
 
     const handleImageSelect = (imagePath) => {
-        setForm({ ...form, image: `http://localhost:5001${imagePath}` });
+        const imageName = imagePath.split('/').pop().split('.').shift();
+        setForm({ ...form, image: `http://localhost:5001${imagePath}`, itemCode: imageName });
         setSelectedImage(imagePath);
     };
 
@@ -166,7 +190,10 @@ const InventoryPage = () => {
             purchaseDate: '',
             price: '',
             quantity: '',
-            image: ''
+            image: '',
+            publish: false,
+            publishedDate: '',
+            boxNo: ''
         });
         setIsEditing(false);
         setEditId(null);
@@ -180,44 +207,52 @@ const InventoryPage = () => {
                     <strong>{node.name}</strong>
                 </div>
             ) : (
-                <img
-                    key={index}
-                    src={`http://localhost:5001${node.path}`}
-                    alt={node.name}
-                    className={selectedImage === node.path ? 'selected-image' : ''}
-                    style={{ maxWidth: '100px', margin: '5px', cursor: 'pointer' }}
-                    onClick={() => handleImageSelect(node.path)}
-                />
+                <div key={index} style={{ display: 'inline-block', textAlign: 'center', margin: '5px' }}>
+                    <img
+                        src={`http://localhost:5001${node.path}`}
+                        alt={node.name}
+                        className={selectedImage === node.path ? 'selected-image' : ''}
+                        style={{ width: '250px', height: '250px', objectFit: 'cover', cursor: 'pointer' }}
+                        onClick={() => handleImageSelect(node.path)}
+                    />
+                    <div>{node.name.split('/').pop().split('.').shift()}</div>
+                </div>
             )
         ));
     };
 
     const mapFormToItem = (form, id) => ({
         id: id || Date.now(),
-        itemCode: form.itemCode,
-        itemCategory: form.itemCategory,
-        itemStyle: form.itemStyle,
+        code: form.itemCode,
+        category: form.itemCategory,
+        style: form.itemStyle,
         color: form.color,
         type: form.type,
         size: form.size,
-        purchaseDate: form.purchaseDate,
+        date: form.purchaseDate,
         price: form.price,
         quantity: form.quantity,
         image: form.image,
+        publish: form.publish,
+        publishedDate: form.publish ? form.publishedDate || new Date().toISOString() : '',
+        boxNo: form.boxNo,
         systemDate: new Date().toISOString() // Setting the system date and time
     });
 
     const mapItemToForm = (item) => ({
-        itemCode: item.itemCode,
-        itemCategory: item.itemCategory,
-        itemStyle: item.itemStyle,
+        itemCode: item.code,
+        itemCategory: item.category,
+        itemStyle: item.style,
         color: item.color,
         type: item.type,
         size: item.size,
-        purchaseDate: item.purchaseDate,
+        purchaseDate: item.date,
         price: item.price,
         quantity: item.quantity,
-        image: item.image
+        image: item.image,
+        publish: item.publish,
+        publishedDate: item.publishedDate,
+        boxNo: item.boxNo
     });
 
     return (
@@ -227,13 +262,19 @@ const InventoryPage = () => {
             <div className="image-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4>{currentPath.length > 0 ? 'Select an Image' : 'Browse Folder'}</h4>
+                    {selectedImage && <img src={`http://localhost:5001${selectedImage}`} alt="Selected" style={{ maxWidth: '100px', margin: '5px' }} />}
                     {currentPath.length > 0 && (
                         <button onClick={handleBackClick} className="btn btn-secondary">Back</button>
                     )}
                 </div>
-                <div className="d-flex overflow-auto image-scroll" style={{ maxHeight: '200px', border: '1px solid #ccc', padding: '10px', whiteSpace: 'nowrap' }}>
+                <div className="d-flex overflow-auto image-scroll">
                     {renderImageTree()}
                 </div>
+                {currentPath.length > 0 && (
+                    <div className="mt-2 text-center">
+                        <strong>{currentPath[currentPath.length - 1]}</strong>
+                    </div>
+                )}
             </div>
             <form className="mb-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} autoComplete="off">
                 <div>
@@ -293,6 +334,17 @@ const InventoryPage = () => {
                     />
                 </div>
                 <div>
+                    <TextInput
+                        label="Box No"
+                        name="boxNo"
+                        id="boxNo"
+                        value={form.boxNo}
+                        onChange={handleChange}
+                        placeholder="Box No"
+                        className="validate"
+                    />
+                </div>
+                <div>
                     <DatePicker
                         label="Purchase Date"
                         name="purchaseDate"
@@ -316,6 +368,24 @@ const InventoryPage = () => {
                         onChange={handleChange}
                     />
                 </div>
+                <div>
+                    <p>
+                        <label>
+                            <input type="checkbox" name="publish" className="filled-in" checked={form.publish} onChange={handleChange} />
+                            <span>Publish</span>
+                        </label>
+                    </p>
+                </div>
+                {form.publish && (
+                    <div>
+                        <DatePicker
+                            label="Published Date"
+                            name="publishedDate"
+                            value={form.publishedDate}
+                            onChange={handleChange}
+                        />
+                    </div>
+                )}
                 <InputButton 
                     type="button"
                     onClick={handleAdd}
@@ -331,8 +401,12 @@ const InventoryPage = () => {
                         <MaterializeCard
                             title=""
                             image={item.image}
-                            description={item.itemCode}
+                            description={item.code}
                             quantity={item.quantity}
+                            category={dropdownOptions.itemCategory.find(option => option.key === item.category)?.value}
+                            style={dropdownOptions.itemStyle.find(option => option.key === item.style)?.value}
+                            color={dropdownOptions.color.find(option => option.key === item.color)?.value}
+                            price={item.price}
                             editClick={() => handleEdit(item.id)} 
                             deleteClick={() => handleDelete(item.id)}
                             editIcon="edit"

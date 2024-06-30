@@ -1,0 +1,29 @@
+.image-scroll img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.selected-image {
+    transform: scale(1.1);
+    border: 2px solid blue;
+}
+
+.image-section .d-flex {
+    max-height: 450px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.image-section .d-flex img:hover {
+    transform: scale(1.1);
+}
+
+.image-scroll div {
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+}

@@ -23,4 +23,7 @@
     font-size: 0.9rem; /* Adjust font size as needed */
     padding: 10px; /* Adjust padding as needed */
   }
-  
+  .priceFont{
+    font-size:12px;
+    font-weight:bold;
+  }
