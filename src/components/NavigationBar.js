@@ -3,25 +3,16 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">Inventory Management</Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/sales">Sales Record</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/shipment">Shipment Details</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/analytics">Sales Analytics</Link>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+         <nav class="nav-extended">
+         <div class="nav-wrapper">
+           <ul class="right hide-on-med-and-down ">
+            <li>  <Link className="nav-link black-text" to="/">Inventory Management</Link></li>
+             <li><Link className="nav-link black-text" to="/sales">Sales Record</Link></li>
+             <li><Link className="nav-link black-text" to="/shipment">Shipment Details</Link></li>
+             <li><Link className="nav-link black-text" to="/analytics">Sales Analytics</Link></li>
+           </ul>
+         </div>
+       </nav>
     );
 };
 

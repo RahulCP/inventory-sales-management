@@ -1,0 +1,27 @@
+.shipment-completed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.shipment-item {
+    display: flex;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.shipment-column {
+    flex: 1;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.enlarged-image {
+    width: 80%;
+    height: auto;
+}

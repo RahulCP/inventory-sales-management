@@ -1,3 +1,176 @@
 {
-  "sales": []
+  "sales": [
+    {
+      "itemIds": [
+        1719745633903
+      ],
+      "quantities": {
+        "1719745633903": 1
+      },
+      "sellingPrices": {
+        "1719745633903": "620"
+      },
+      "discounts": {
+        "1719745633903": 0
+      },
+      "salesDate": "2024-07-02",
+      "price": "620.00",
+      "buyerDetails": "Jaaz Nalil Pothen\nUsha Villa\nManjadi PO\nThiruvalla\nPIN 689105\nPathanamthitta\n9446231869",
+      "phoneNumber": "9446231869",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:47:18.562Z",
+      "giveAway": false,
+      "id": 1719887925522,
+      "shipmentDate": "2024-07-02",
+      "shipmentPrice": "41",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719747193146,
+        1719748014578,
+        1719890978528
+      ],
+      "quantities": {
+        "1719747193146": 1,
+        "1719748014578": 2,
+        "1719890978528": 1
+      },
+      "sellingPrices": {
+        "1719747193146": "660",
+        "1719748014578": "850",
+        "1719890978528": "610"
+      },
+      "discounts": {
+        "1719747193146": 20,
+        "1719748014578": 20,
+        "1719890978528": 20
+      },
+      "salesDate": "2024-07-02",
+      "price": "2376.00",
+      "buyerDetails": "Krishnapriya Vinay\nKPRA A 13, 2nd floor\nKonnamkulam lane, Murinjapalam\nMedical College PO, 695011\nTrivandrum\nKerala",
+      "phoneNumber": "9567554301",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:49:03.888Z",
+      "giveAway": false,
+      "id": 1719890554813,
+      "shipmentDate": "2024-07-02",
+      "shipmentPrice": "35",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719747223701
+      ],
+      "quantities": {
+        "1719747223701": 1
+      },
+      "sellingPrices": {
+        "1719747223701": "660"
+      },
+      "discounts": {
+        "1719747223701": 0
+      },
+      "salesDate": "2024-07-02",
+      "price": "660.00",
+      "buyerDetails": "SEETHAL\nNLRA-330 VILAYIL VEEDU\nNEERAZHI LANE, ULLOR\nTRIVANDRUM\n695011",
+      "phoneNumber": "9188818255",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:48:53.559Z",
+      "giveAway": false,
+      "id": 1719891243380,
+      "shipmentDate": "2024-07-02",
+      "shipmentPrice": "30",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719747193146,
+        1719747784546,
+        1719745549062
+      ],
+      "quantities": {
+        "1719747193146": 1,
+        "1719747784546": 1,
+        "1719745549062": 1
+      },
+      "sellingPrices": {
+        "1719747193146": "660",
+        "1719747784546": "399",
+        "1719745549062": "530"
+      },
+      "discounts": {
+        "1719747193146": 15,
+        "1719747784546": 15,
+        "1719745549062": 15
+      },
+      "salesDate": "2024-07-02",
+      "price": "1350.65",
+      "buyerDetails": "Vandana Sekhar\nSreevishak\nCharupara\nKattakada.P.O\nTrivandrum\n695572",
+      "phoneNumber": "8891270402",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:48:45.408Z",
+      "giveAway": false,
+      "id": 1719891554601,
+      "shipmentDate": "2024-07-02",
+      "shipmentPrice": "41",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719744169807
+      ],
+      "quantities": {
+        "1719744169807": 1
+      },
+      "sellingPrices": {
+        "1719744169807": "770"
+      },
+      "discounts": {
+        "1719744169807": 0
+      },
+      "salesDate": "2024-07-02",
+      "price": "770.00",
+      "buyerDetails": "Amrutha.P.M\nSreenilayam\nKoroth Road PO\nAzhiyur\n673309",
+      "phoneNumber": "9074309742",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:48:35.219Z",
+      "giveAway": false,
+      "id": 1719893083181,
+      "shipmentDate": "2024-07-02",
+      "shipmentPrice": "47",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719744236028
+      ],
+      "quantities": {
+        "1719744236028": 1
+      },
+      "sellingPrices": {
+        "1719744236028": "1050"
+      },
+      "discounts": {
+        "1719744236028": 17
+      },
+      "salesDate": "2024-07-02",
+      "price": "871.50",
+      "buyerDetails": "Amina aadhil, S-320\nKaikara Bunglow, Sreepuram Road\nPoojapura, Trivandrum\n695012\nKerala",
+      "phoneNumber": "9567636232",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-02T06:48:24.420Z",
+      "giveAway": false,
+      "id": 1719899542573,
+      "shipmentDate": "",
+      "shipmentPrice": "30",
+      "shipmentMethod": "",
+      "trackingId": ""
+    }
+  ]
 }

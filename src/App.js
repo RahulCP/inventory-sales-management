@@ -10,7 +10,12 @@ function App() {
     return (
         <Router>
             <div class="container">
-            <NavBar />
+            <div class="row">
+      <div class="col s4"><a href="#!" class="brand-logo"><img src="illolam-Logo.png" alt="Item" className="selected-item-thumbnail" /></a></div>
+      <div class="col s8"> <NavBar /></div>
+    </div>
+            
+           
             <Routes>
                 <Route path="/" element={<InventoryPage />} />
                 <Route path="/sales" element={<SalesPage />} />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEdit, FaTrash } from 'react-icons/fa';
 import SelectBox from './../form/SelectBox';
 import TextInput from './../form/TextInput';
 import MoneyInput from './../form/MoneyInput';
@@ -8,7 +7,8 @@ import NumberInput from './../form/NumberInput';
 import DatePicker from './../form/DatePicker';
 import InputButton from './../form/InputButton';
 import MaterializeCard from './../form/MaterializeCard';
-import './App.css';
+import FormCheckbox from './../form/FormCheckbox';
+import './SalesPage.css';
 
 const dropdownOptions = {
     itemCategory: [
@@ -28,16 +28,6 @@ const dropdownOptions = {
         { key: '3', value: 'Green' },
         { key: '4', value: 'Gold' },
         { key: '5', value: 'white' }
-    ],
-    type: [
-        { key: '1', value: 'Copper' },
-        { key: '2', value: 'Brass' },
-        { key: '3', value: 'Alloy' }
-    ],
-    size: [
-        { key: '1', value: '24' },
-        { key: '2', value: '26' },
-        { key: '3', value: '28' }
     ]
 };
 
@@ -132,9 +122,12 @@ const InventoryPage = () => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5001/api/inventory/items/${id}`).then(() => {
-            fetchData();
-        });
+        const confirmDelete = window.confirm('Are you sure you want to delete this item?');
+        if (confirmDelete) {
+            axios.delete(`http://localhost:5001/api/inventory/items/${id}`).then(() => {
+                fetchData();
+            });
+        }
     };
 
     const handleImageSelect = (imagePath) => {
@@ -267,7 +260,7 @@ const InventoryPage = () => {
                         <button onClick={handleBackClick} className="btn btn-secondary">Back</button>
                     )}
                 </div>
-                <div className="d-flex overflow-auto image-scroll">
+                <div className="horizontal-scroll">
                     {renderImageTree()}
                 </div>
                 {currentPath.length > 0 && (
@@ -286,6 +279,49 @@ const InventoryPage = () => {
                         onChange={handleChange}
                         placeholder="Item Code"
                         className="validate"
+                    />
+                </div>
+                <div>
+                    <MoneyInput
+                        label="Price"
+                        name="price"
+                        value={form.price}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <NumberInput
+                        label="Quantity"
+                        name="quantity"
+                        value={form.quantity}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <MoneyInput
+                        label="Selling Price"
+                        name="size"
+                        value={form.size}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <TextInput
+                        label="Box No"
+                        name="boxNo"
+                        id="boxNo"
+                        value={form.boxNo}
+                        onChange={handleChange}
+                        placeholder="Box No"
+                        className="validate"
+                    />
+                </div>
+                <div>
+                    <DatePicker
+                        label="Purchase Date"
+                        name="purchaseDate"
+                        value={form.purchaseDate}
+                        onChange={handleChange}
                     />
                 </div>
                 <div>
@@ -316,66 +352,13 @@ const InventoryPage = () => {
                     />
                 </div>
                 <div>
-                    <SelectBox
-                        label="Type"
-                        name="type"
-                        value={form.type}
-                        onChange={handleChange}
-                        options={dropdownOptions.type}
-                    />
-                </div>
-                <div>
-                    <SelectBox
-                        label="Size"
-                        name="size"
-                        value={form.size}
-                        onChange={handleChange}
-                        options={dropdownOptions.size}
-                    />
-                </div>
-                <div>
-                    <TextInput
-                        label="Box No"
-                        name="boxNo"
-                        id="boxNo"
-                        value={form.boxNo}
-                        onChange={handleChange}
-                        placeholder="Box No"
-                        className="validate"
-                    />
-                </div>
-                <div>
-                    <DatePicker
-                        label="Purchase Date"
-                        name="purchaseDate"
-                        value={form.purchaseDate}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <MoneyInput
-                        label="Price"
-                        name="price"
-                        value={form.price}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <NumberInput
-                        label="Quantity"
-                        name="quantity"
-                        value={form.quantity}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <p>
-                        <label>
-                            <input type="checkbox" name="publish" className="filled-in" checked={form.publish} onChange={handleChange} />
-                            <span>Publish</span>
-                        </label>
-                    </p>
-                </div>
+                        <FormCheckbox
+                            name="publish"
+                            checked={form.publish}
+                            onChange={handleChange}
+                            label="Publish"
+                        />
+                     </div>
                 {form.publish && (
                     <div>
                         <DatePicker

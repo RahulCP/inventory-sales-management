@@ -1,0 +1,47 @@
+/* ItemSelector.css */
+.item-selector {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+}
+
+.item-selection {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.item-selection.selected {
+    border: 2px solid blue;
+    transform: scale(0.95);
+}
+
+.item-thumbnail {
+    width: 200px;
+    height: 200px;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.selected-item-thumbnail {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+}
+
+.item-quantity {
+    width: 50px;
+    margin-right: 10px;
+}

@@ -24,7 +24,7 @@ server.use(jsonServer.bodyParser);
 server.use('/images', express.static(path.join(__dirname, 'src/images')));
 
 // Supported image extensions
-const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp','HEIC'];
 
 // Endpoint to list all directories and image files in the 'src/images' folder
 server.get('/api/images', (req, res) => {

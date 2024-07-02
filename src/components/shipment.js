@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TextInput from './../form/TextInput';
+import MoneyInput from './../form/MoneyInput';
+import SelectBox from './../form/SelectBox';
+import DatePicker from './../form/DatePicker';
+import './shipment.css';
+const dropdownOptions = {
+    shipment: [
+        { key: '1', value: 'India Post' },
+        { key: '2', value: 'DTDC' }
+    ]
+};
 
 const ShipmentPage = () => {
     const [sales, setSales] = useState([]);
+    const [items, setItems] = useState([]);
     const [shipmentDetails, setShipmentDetails] = useState({});
     const [enlargedImage, setEnlargedImage] = useState(null);
 
@@ -13,6 +25,12 @@ const ShipmentPage = () => {
                 initializeShipmentDetails(response.data);
             })
             .catch(error => console.error('Error fetching sales:', error));
+
+        axios.get('http://localhost:5001/api/inventory/items')
+            .then(response => {
+                setItems(response.data || []);
+            })
+            .catch(error => console.error('Error fetching items:', error));
     }, []);
 
     const initializeShipmentDetails = (salesData) => {
@@ -50,10 +68,8 @@ const ShipmentPage = () => {
             ...shipmentData
         };
 
-        // Get the current system date and time
         const systemDate = new Date().toISOString();
 
-        // Update sales status and shipment details in sales.json
         axios.put(`http://localhost:5001/api/sales/sales/${id}`, {
             ...updatedSale,
             systemDate
@@ -74,7 +90,6 @@ const ShipmentPage = () => {
             salesStatus: 'SP'
         };
 
-        // Update sales status back to SP in sales.json
         axios.put(`http://localhost:5001/api/sales/sales/${id}`, revertedSale)
             .then(() => {
                 setSales(prevSales => prevSales.map(sale => sale.id === id ? revertedSale : sale));
@@ -98,44 +113,41 @@ const ShipmentPage = () => {
             {sales.filter(sale => sale.salesStatus === 'SP').map(sale => (
                 <div key={sale.id} className="shipment-detail">
                     <h2>Sale ID: {sale.id}</h2>
-                    <p>Item Codes: {sale.itemCodes.join(", ")}</p>
+                    <p>Item Codes: {sale.itemIds.map(id => items.find(item => item.id === id)?.code).join(", ")}</p>
                     <p>Buyer Details: {sale.buyerDetails}</p>
-                    <input
-                        type="date"
-                        name="shipmentDate"
-                        value={shipmentDetails[sale.id]?.shipmentDate || ''}
-                        onChange={(e) => handleShipmentChange(e, sale.id)}
-                        placeholder="Shipment Date"
-                        className="form-control"
-                    />
-                    <input
-                        type="text"
-                        name="shipmentPrice"
-                        value={shipmentDetails[sale.id]?.shipmentPrice || ''}
-                        onChange={(e) => handleShipmentChange(e, sale.id)}
-                        placeholder="Shipment Price"
-                        className="form-control"
-                    />
-                    <select
-                        name="shipmentMethod"
-                        value={shipmentDetails[sale.id]?.shipmentMethod || ''}
-                        onChange={(e) => handleShipmentChange(e, sale.id)}
-                        className="form-control"
-                    >
-                        <option value="">Select Method</option>
-                        <option value="Ground">Ground</option>
-                        <option value="Air">Air</option>
-                        <option value="Sea">Sea</option>
-                    </select>
-                    <input
-                        type="text"
-                        name="trackingId"
-                        value={shipmentDetails[sale.id]?.trackingId || ''}
-                        onChange={(e) => handleShipmentChange(e, sale.id)}
-                        placeholder="Tracking ID"
-                        className="form-control"
-                    />
-                    <button onClick={() => handleSubmit(sale.id)} className="btn btn-primary">Update Shipment</button>
+                    <div className="mb-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} autoComplete="off">
+                        <DatePicker
+                            label="Shipment Date"
+                            name="shipmentDate"
+                            value={shipmentDetails[sale.id]?.shipmentDate || ''}
+                            onChange={(e) => handleShipmentChange(e, sale.id)}
+                        />
+                        <MoneyInput
+                            label="Price"
+                            name="shipmentPrice"
+                            value={shipmentDetails[sale.id]?.shipmentPrice || ''}
+                            onChange={(e) => handleShipmentChange(e, sale.id)}
+                        />
+                        <SelectBox
+                            label="Mode"
+                            name="shipmentMethod"
+                            value={shipmentDetails[sale.id]?.shipmentMethod || ''}
+                            onChange={(e) => handleShipmentChange(e, sale.id)}
+                            options={dropdownOptions.shipment}
+                        />
+                        <TextInput
+                            label="Tracking id"
+                            name="trackingId"
+                            id="trackingId"
+                            value={shipmentDetails[sale.id]?.trackingId || ''}
+                            onChange={(e) => handleShipmentChange(e, sale.id)}
+                            placeholder="Tracking Id"
+                            className="validate"
+                        />
+                    </div>
+                    <div>
+                        <button onClick={() => handleSubmit(sale.id)} className="btn btn-primary">Update Shipment</button>
+                    </div>
                 </div>
             ))}
 
@@ -143,22 +155,25 @@ const ShipmentPage = () => {
             <div className="shipment-completed">
                 {sales.filter(sale => sale.salesStatus === 'SD').map(sale => (
                     <div key={sale.id} className="shipment-item">
-                        <h2>Sale ID: {sale.id}</h2>
-                        <p>Item Codes: {sale.itemCodes.join(", ")}</p>
-                        <p>Buyer Details: {sale.buyerDetails}</p>
-                        <p>Shipment Date: {sale.shipmentDate || 'N/A'}</p>
-                        <p>Shipment Price: {sale.shipmentPrice || 'N/A'}</p>
-                        <p>Shipment Method: {sale.shipmentMethod || 'N/A'}</p>
-                        <p>Tracking ID: {sale.trackingId || 'N/A'}</p>
-                        {sale.shipmentImage && (
-                            <img 
-                                src={sale.shipmentImage} 
-                                alt="Shipment" 
-                                className="shipment-image"
-                                onClick={() => handleImageClick(sale.shipmentImage)}
-                            />
-                        )}
-                        <button onClick={() => handleRevert(sale.id)} className="btn btn-warning">Revert</button>
+                        <div className="shipment-column">
+                            <address>
+                                {sale.buyerDetails.split('\n').map((line, index) => (
+                                    <React.Fragment key={index}>
+                                        {line}
+                                        <br />
+                                    </React.Fragment>
+                                ))}
+                            </address>
+                        </div>
+                        <div className="shipment-column">
+                            <p>{sale.shipmentPrice || 'N/A'}</p>
+                        </div>
+                        <div className="shipment-column">
+                            <p>{sale.trackingId || 'N/A'}</p>
+                        </div>
+                        <div className="shipment-column">
+                            <button onClick={() => handleRevert(sale.id)} className="btn btn-warning">Revert</button>
+                        </div>
                     </div>
                 ))}
             </div>

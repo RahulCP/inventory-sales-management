@@ -1,0 +1,128 @@
+.sales-form {
+    padding: 20px;
+    margin: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+}
+
+.item-selection {
+    flex: 0 0 auto;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+    width: 200px; /* Adjust the width as needed */
+}
+
+.item-selection img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.item-selection.selected {
+    border-color: #007bff;
+    transform: scale(0.9);
+}
+
+.vertical-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.selected-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.selected-item-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.item-quantity {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.sales-list {
+    margin: 20px;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Add styles for selected items grid layout */
+.selected-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.selected-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected-item img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.selected-item .buying-price,
+.selected-item .item-quantity,
+.selected-item .item-selling-price,
+.selected-item .item-discount,
+.selected-item .item-final-price {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.selected-item button {
+    align-self: stretch;
+}
+
+.form-group-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group-inline label {
+    margin-bottom: 5px;
+}
+
+.item-final-price {
+    font-weight: bold;
+}
