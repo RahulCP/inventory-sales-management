@@ -7,6 +7,7 @@ import FormCheckbox from './../form/FormCheckbox';
 import NumberInput from './../form/NumberInput';
 import TextAreaField from './../form/TextAreaField';
 import ItemSelector from './ItemSelector'; // Import the new component
+import IconHyperlink from './../form/IconHyperlink';
 
 const SalesPage = () => {
     const [sales, setSales] = useState([]);
@@ -202,7 +203,6 @@ const SalesPage = () => {
     return (
         <div>
             <div className="sales-form">
-                <h1>Sales Record</h1>
                 <form className="form-grid">
                     <ItemSelector 
                         items={items} 
@@ -210,7 +210,6 @@ const SalesPage = () => {
                         onSelectItem={handleSelectItem} 
                     />
                     <div className="form-group selected-items">
-                        <label>Selected Items:</label>
                         <div className="selected-items-grid">
                             {form.itemIds.map(id => {
                                 const selectedItem = items.find(item => item.id === id);
@@ -218,52 +217,52 @@ const SalesPage = () => {
                                 const reducedInventory = parseInt(selectedItem.type) || 0;
                                 const balance = originalInventory-reducedInventory;
                                 return (
-                                    <div key={id} className="selected-item">
+                                    <div key={id} className="selected-card">
                                         {selectedItem && (
                                             
-                                            <>
-                                                <img src={selectedItem.image} alt="Item" className="selected-item-thumbnail" />
-                                                <span>{selectedItem.code}</span>
-                                                <span className="buying-price">Buying Price: {selectedItem.price}</span>
-                                                <span className="buying-price">Qty Left:{balance} </span>
-                                            </>
+                                            <div>
+                                              <div>
+                                                <div class="left left-align">{selectedItem.code}</div>
+                                                <div class="right right-align">  <IconHyperlink
+                                                                        href="#"
+                                                                        onClick={() => handleRemoveItem(id)}
+                                                                        icon="close"
+                                                                        iconSize="small"
+                                                                        additionalClasses="black-text"
+                                                                    />
+                                              </div>
+                                             </div>
+                                             <img src={selectedItem.image} alt="Item" className="selected-item-thumbnail" />
+                                             <ul class="collection">
+                                                <li class="collection-item">{selectedItem.price}{"  ₹"}</li>
+                                        <li class="collection-item">{balance}</li>
+                                            </ul>
+                                            </div>
                                         )}
                                         <div className="form-group-inline">
-                                            <label>Quantity:</label>
-                                            <input
-                                                type="number"
-                                                name={`quantity-${id}`}
-                                                value={form.quantities[id]}
-                                                onChange={(e) => handleQuantityChange(e, id)}
-                                                className="item-quantity"
-                                            />
-                                        </div>
-                                        <div className="form-group-inline">
-                                            <label>Selling Price:</label>
-                                            <input
-                                                type="number"
-                                                name={`sellingPrice-${id}`}
-                                                value={form.sellingPrices[id]}
-                                                onChange={(e) => handleSellingPriceChange(e, id)}
-                                                className="item-selling-price"
-                                                placeholder="Selling Price"
-                                            />
-                                        </div>
-                                        <div className="form-group-inline">
-                                            <label>Discount %:</label>
-                                            <input
-                                                type="number"
-                                                name={`discount-${id}`}
-                                                value={form.discounts[id]}
-                                                onChange={(e) => handleDiscountChange(e, id)}
-                                                className="item-discount"
-                                                placeholder="Discount %"
-                                            />
+
+                                        <NumberInput
+                                            icon="#"
+                                            name={`quantity-${id}`}
+                                            value={form.quantities[id]}
+                                            onChange={(e) => handleQuantityChange(e, id)}
+                                        />
+                                                                <MoneyInput
+                                            icon="₹"
+                                            name={`sellingPrice-${id}`}
+                                            value={form.sellingPrices[id]?form.sellingPrices[id]:selectedItem.size}
+                                            onChange={(e) => handleSellingPriceChange(e, id)}
+                                        />
+                                                                <NumberInput
+                                            icon="%"
+                                            name={`discount-${id}`}
+                                            value={form.discounts[id]}
+                                            onChange={(e) => handleDiscountChange(e, id)}
+                                        />
                                         </div>
                                         <span className="item-final-price">
                                             Final Price: {calculateFinalPrice(id)}
                                         </span>
-                                        <button type="button" onClick={() => handleRemoveItem(id)} className="btn btn-sm btn-danger">Remove</button>
                                     </div>
                                 );
                             })}
@@ -279,7 +278,7 @@ const SalesPage = () => {
                     </div>
                     <div>
                         <MoneyInput
-                            label="Price"
+                            icon="₹"
                             name="price"
                             value={form.price}
                             onChange={(e) => setForm({ ...form, price: e.target.value })} 
@@ -296,7 +295,7 @@ const SalesPage = () => {
                     </div>
                     <div>
                         <NumberInput
-                            label="Phone #"
+                            icon="local_phone"
                             name="phoneNumber"
                             value={form.phoneNumber}
                             onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}

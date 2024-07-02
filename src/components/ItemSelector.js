@@ -18,15 +18,16 @@ const ItemSelector = ({ items, selectedItems, onSelectItem }) => {
     );
 
     return (
-        <div className="item-selector">
-            <label>Select Item Codes:</label>
-            <input
-                type="text"
-                placeholder="Search by item code"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-input"
-            />
+        <div>
+              <nav>
+                <div class="nav-wrapper">
+                    <div class="input-field">
+                    <input id="search" type="search" value={searchTerm}  onChange={handleSearchChange} placeholder="Search by item code"/>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                    </div>
+                </div>
+            </nav>
             <div className="horizontal-scroll">
                 {filteredItems.map(item => (
                     <div

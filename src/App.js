@@ -5,15 +5,16 @@ import SalesPage from './components/SalesRecord';
 import NavBar from './components/NavigationBar';
 import ShipmentPage from './components/shipment';
 import AnalyticsPage from './components/Analytics';
+import './index.css';
 
 function App() {
     return (
         <Router>
             <div class="container">
             <div class="row">
-      <div class="col s4"><a href="#!" class="brand-logo"><img src="illolam-Logo.png" alt="Item" className="selected-item-thumbnail" /></a></div>
-      <div class="col s8"> <NavBar /></div>
-    </div>
+            <div class="col s6"><a href="#!" class="brand-logo"><img src="illolam-Logo.png" alt="Item" className="logo_img" /></a></div>
+            <div class="col s6"> <NavBar /></div>
+            </div>
             
            
             <Routes>

@@ -7,7 +7,7 @@
       "style": "1",
       "color": "4",
       "type": 0,
-      "size": "",
+      "size": "780",
       "date": "2024-06-07",
       "price": "460",
       "quantity": "3",
@@ -15,7 +15,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "1",
-      "systemDate": "2024-06-30T10:08:40.809Z"
+      "systemDate": "2024-07-02T11:26:45.565Z"
     },
     {
       "id": 1719743244860,
@@ -24,15 +24,15 @@
       "style": "1",
       "color": "5",
       "type": 0,
-      "size": "",
+      "size": "1035",
       "date": "2024-06-07",
       "price": "615",
-      "quantity": "5",
+      "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1050.jpg",
       "publish": false,
       "publishedDate": "",
       "boxNo": "1",
-      "systemDate": "2024-06-30T10:27:24.860Z"
+      "systemDate": "2024-07-02T11:28:56.149Z"
     },
     {
       "id": 1719743509429,
@@ -41,15 +41,15 @@
       "style": "1",
       "color": "1",
       "type": "0",
-      "size": "",
+      "size": "620",
       "date": "",
       "price": "320",
       "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1430.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-19",
       "boxNo": "1",
-      "systemDate": "2024-06-30T10:31:49.429Z"
+      "systemDate": "2024-07-02T11:49:42.879Z"
     },
     {
       "id": 1719743667460,
@@ -57,16 +57,16 @@
       "category": "1",
       "style": "2",
       "color": "5",
-      "type": "1",
-      "size": "",
+      "type": 1,
+      "size": "750",
       "date": "2024-07-08",
       "price": "455",
       "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1405.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-19",
       "boxNo": "1",
-      "systemDate": "2024-06-30T10:34:27.460Z"
+      "systemDate": "2024-07-02T11:51:00.306Z"
     },
     {
       "id": 1719743741655,
@@ -75,15 +75,15 @@
       "style": "1",
       "color": "4",
       "type": "0",
-      "size": "",
+      "size": "540",
       "date": "",
-      "price": "22",
+      "price": "220",
       "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-NC-1561.jpg",
       "publish": false,
       "publishedDate": "",
       "boxNo": "1",
-      "systemDate": "2024-06-30T10:35:41.655Z"
+      "systemDate": "2024-07-02T11:52:35.224Z"
     },
     {
       "id": 1719743789401,
@@ -92,15 +92,15 @@
       "style": "1",
       "color": "2",
       "type": "1",
-      "size": "",
-      "date": "",
+      "size": "580",
+      "date": "2024-06-08",
       "price": "260",
       "quantity": "3",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-NC-1493.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-21",
       "boxNo": "2",
-      "systemDate": "2024-06-30T10:36:29.401Z"
+      "systemDate": "2024-07-02T11:57:01.373Z"
     },
     {
       "id": 1719743835889,
@@ -109,7 +109,7 @@
       "style": "1",
       "color": "1",
       "type": "0",
-      "size": "",
+      "size": "920",
       "date": "",
       "price": "550",
       "quantity": "6",
@@ -117,7 +117,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "2",
-      "systemDate": "2024-06-30T10:37:15.889Z"
+      "systemDate": "2024-07-02T12:00:24.418Z"
     },
     {
       "id": 1719743940796,
@@ -126,15 +126,15 @@
       "style": "1",
       "color": "5",
       "type": "1",
-      "size": "",
+      "size": "899",
       "date": "",
       "price": "570",
       "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-NC-1451.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-21",
       "boxNo": "2",
-      "systemDate": "2024-06-30T10:39:00.796Z"
+      "systemDate": "2024-07-02T12:03:27.490Z"
     },
     {
       "id": 1719744022388,
@@ -143,7 +143,7 @@
       "style": "1",
       "color": "2",
       "type": "0",
-      "size": "",
+      "size": "700",
       "date": "",
       "price": "380",
       "quantity": "3",
@@ -151,7 +151,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "2",
-      "systemDate": "2024-06-30T10:40:22.388Z"
+      "systemDate": "2024-07-02T12:04:33.230Z"
     },
     {
       "id": 1719744058663,
@@ -160,7 +160,7 @@
       "style": "1",
       "color": "3",
       "type": "0",
-      "size": "",
+      "size": "700",
       "date": "",
       "price": "380",
       "quantity": "3",
@@ -168,7 +168,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "2",
-      "systemDate": "2024-06-30T10:40:58.663Z"
+      "systemDate": "2024-07-02T12:04:47.610Z"
     },
     {
       "id": 1719744169807,
@@ -209,17 +209,17 @@
       "code": "AN-P-SET-410",
       "category": "1",
       "style": "1",
-      "color": "4",
+      "color": "2",
       "type": "0",
-      "size": "",
+      "size": "760",
       "date": "",
       "price": "440",
       "quantity": "2",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-P-SET-410.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-21",
       "boxNo": "3",
-      "systemDate": "2024-06-30T12:13:11.722Z"
+      "systemDate": "2024-07-02T12:13:29.724Z"
     },
     {
       "id": 1719744372581,
@@ -228,7 +228,7 @@
       "style": "1",
       "color": "1",
       "type": "0",
-      "size": "",
+      "size": "760",
       "date": "",
       "price": "440",
       "quantity": "3",
@@ -236,7 +236,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:46:12.581Z"
+      "systemDate": "2024-07-02T12:13:55.876Z"
     },
     {
       "id": 1719744442831,
@@ -244,16 +244,16 @@
       "category": "1",
       "style": "2",
       "color": "5",
-      "type": "",
-      "size": "",
+      "type": 0,
+      "size": "1200",
       "date": "",
-      "price": "455",
-      "quantity": "6",
+      "price": "670",
+      "quantity": "3",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1405-NAU.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-21",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:47:22.831Z"
+      "systemDate": "2024-07-02T12:21:12.121Z"
     },
     {
       "id": 1719744509718,
@@ -262,15 +262,15 @@
       "style": "1",
       "color": "1",
       "type": "0",
-      "size": "",
-      "date": "",
+      "size": "640",
+      "date": "2024-06-10",
       "price": "320",
       "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-NC-1488.jpg",
       "publish": false,
       "publishedDate": "",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:48:29.718Z"
+      "systemDate": "2024-07-02T12:21:03.849Z"
     },
     {
       "id": 1719744719690,
@@ -279,15 +279,15 @@
       "style": "1",
       "color": "3",
       "type": "0",
-      "size": "",
+      "size": "1100",
       "date": "",
       "price": "640",
       "quantity": "3",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/VC-NC-1624-GREEN.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-20",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:51:59.690Z"
+      "systemDate": "2024-07-02T12:32:26.288Z"
     },
     {
       "id": 1719744782917,
@@ -296,15 +296,15 @@
       "style": "1",
       "color": "4",
       "type": "0",
-      "size": "",
-      "date": "",
+      "size": "920",
+      "date": "2024-06-08",
       "price": "640",
       "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/VC-NC-1624.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-14",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:53:02.917Z"
+      "systemDate": "2024-07-02T12:24:05.021Z"
     },
     {
       "id": 1719744867749,
@@ -313,15 +313,15 @@
       "style": "2",
       "color": "5",
       "type": "0",
-      "size": "",
+      "size": "650",
       "date": "",
       "price": "330",
-      "quantity": "4",
+      "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1414.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-14",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:54:27.749Z"
+      "systemDate": "2024-07-02T12:27:08.954Z"
     },
     {
       "id": 1719744924715,
@@ -330,7 +330,7 @@
       "style": "1",
       "color": "2",
       "type": "0",
-      "size": "",
+      "size": "1100",
       "date": "",
       "price": "670",
       "quantity": "3",
@@ -338,7 +338,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:55:24.715Z"
+      "systemDate": "2024-07-02T12:32:33.467Z"
     },
     {
       "id": 1719745021362,
@@ -347,7 +347,7 @@
       "style": "1",
       "color": "4",
       "type": "0",
-      "size": "",
+      "size": "580",
       "date": "",
       "price": "260",
       "quantity": "6",
@@ -355,7 +355,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "3",
-      "systemDate": "2024-06-30T10:57:01.362Z"
+      "systemDate": "2024-07-02T12:33:53.741Z"
     },
     {
       "id": 1719745093667,
@@ -449,15 +449,15 @@
       "style": "1",
       "color": "5",
       "type": "0",
-      "size": "",
-      "date": "",
+      "size": "820",
+      "date": "2024-06-08",
       "price": "500",
       "quantity": "3",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AC-NC-1422.jpg",
       "publish": false,
       "publishedDate": "",
       "boxNo": "4",
-      "systemDate": "2024-06-30T11:03:00.298Z"
+      "systemDate": "2024-07-02T10:41:39.093Z"
     },
     {
       "id": 1719745457221,
@@ -1227,11 +1227,11 @@
     {
       "id": 1719751123303,
       "code": "VC-NC-1622",
-      "category": "",
-      "style": "",
-      "color": "",
+      "category": "1",
+      "style": "1",
+      "color": "5",
       "type": "",
-      "size": "",
+      "size": "1195",
       "date": "",
       "price": "675",
       "quantity": "6",
@@ -1239,16 +1239,16 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "1",
-      "systemDate": "2024-06-30T12:39:11.993Z"
+      "systemDate": "2024-07-02T11:31:26.059Z"
     },
     {
       "id": 1719751235693,
       "code": "AN-P-SET-747",
-      "category": "",
-      "style": "",
-      "color": "",
+      "category": "1",
+      "style": "1",
+      "color": "2",
       "type": "",
-      "size": "",
+      "size": "870",
       "date": "",
       "price": "550",
       "quantity": "6",
@@ -1256,7 +1256,7 @@
       "publish": false,
       "publishedDate": "",
       "boxNo": "1",
-      "systemDate": "2024-06-30T12:40:35.693Z"
+      "systemDate": "2024-07-02T11:41:41.658Z"
     },
     {
       "id": 1719751264993,
@@ -1265,15 +1265,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "750",
       "date": "",
       "price": "445",
       "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-270.JPG",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-19",
       "boxNo": "1",
-      "systemDate": "2024-06-30T12:41:04.993Z"
+      "systemDate": "2024-07-02T11:45:34.838Z"
     },
     {
       "id": 1719751338712,
@@ -1342,6 +1342,23 @@
       "publishedDate": "",
       "boxNo": "1",
       "systemDate": "2024-07-02T03:29:38.528Z"
+    },
+    {
+      "id": 1719924402610,
+      "code": "VC-NC-1625-RUBY",
+      "category": "1",
+      "style": "1",
+      "color": "2",
+      "type": "",
+      "size": "1090",
+      "date": "2024-06-21",
+      "price": "670",
+      "quantity": "3",
+      "image": "http://localhost:5001/images/NAVKAR-12-6-24/VC-NC-1625-RUBY.png",
+      "publish": false,
+      "publishedDate": "",
+      "boxNo": "3",
+      "systemDate": "2024-07-02T12:46:42.610Z"
     }
   ]
 }

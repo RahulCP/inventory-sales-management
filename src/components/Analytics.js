@@ -127,8 +127,7 @@ const AnalyticsPage = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Analytics Page</h1>
+        <div>
             <div className="tabs">
                 <button className={`btn ${activeTab === 'salesPrice' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesPrice')}>Sales Price</button>
                 <button className={`btn ${activeTab === 'salesCount' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesCount')}>Sales Count</button>
@@ -137,7 +136,6 @@ const AnalyticsPage = () => {
 
             {activeTab === 'salesPrice' && (
                 <div>
-                    <h2>Sales Price</h2>
                     <div>
                         <label>Start Date:</label>
                         <input type="date" value={salesDataStartDate} onChange={(e) => setSalesDataStartDate(e.target.value)} />

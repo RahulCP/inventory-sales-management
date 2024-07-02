@@ -250,8 +250,6 @@ const InventoryPage = () => {
 
     return (
         <div>
-            <h1>Inventory Management</h1>
-            
             <div className="image-section">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4>{currentPath.length > 0 ? 'Select an Image' : 'Browse Folder'}</h4>

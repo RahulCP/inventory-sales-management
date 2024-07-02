@@ -109,7 +109,6 @@ const ShipmentPage = () => {
 
     return (
         <div>
-            <h1>Shipment Details</h1>
             {sales.filter(sale => sale.salesStatus === 'SP').map(sale => (
                 <div key={sale.id} className="shipment-detail">
                     <h2>Sale ID: {sale.id}</h2>
@@ -151,7 +150,6 @@ const ShipmentPage = () => {
                 </div>
             ))}
 
-            <h1>Shipment Completed</h1>
             <div className="shipment-completed">
                 {sales.filter(sale => sale.salesStatus === 'SD').map(sale => (
                     <div key={sale.id} className="shipment-item">
