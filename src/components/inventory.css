@@ -1,0 +1,51 @@
+.image-section {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.image-section .row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.folder-icon {
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.folder-icon .material-icons {
+    font-size: 80px; /* Make the folder icon bigger */
+    margin-right: 0;
+}
+
+.folder-name {
+    text-align: center;
+}
+
+.image-item img {
+    width: 200px; /* Ensure width and height are the same */
+    height: 200px;
+}
+
+.selected-image-preview {
+    max-width: 100px;
+    margin: 5px;
+    border: 2px solid #42a5f5;
+    border-radius: 10px;
+}
+
+.selected-image {
+    border: 2px solid #42a5f5;
+}
+
+.modal-fixed-width {
+    width: 540px !important; /* Adjusted width to include padding */
+}

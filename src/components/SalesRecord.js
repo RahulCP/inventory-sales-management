@@ -6,12 +6,15 @@ import MoneyInput from './../form/MoneyInput';
 import FormCheckbox from './../form/FormCheckbox';
 import NumberInput from './../form/NumberInput';
 import TextAreaField from './../form/TextAreaField';
-import ItemSelector from './ItemSelector'; // Import the new component
+import ItemSelector from './ItemSelector';
 import IconHyperlink from './../form/IconHyperlink';
+import ModalBox from './ModalBox'; // Import the ModalBox component
+import M from 'materialize-css'; // Import MaterializeCSS
 
 const SalesPage = () => {
     const [sales, setSales] = useState([]);
     const [items, setItems] = useState([]);
+    const [itemSalesQuantities, setItemSalesQuantities] = useState({});
     const [form, setForm] = useState({
         itemIds: [],
         quantities: {},
@@ -27,6 +30,8 @@ const SalesPage = () => {
     });
     const [isEditing, setIsEditing] = useState(false);
     const [editId, setEditId] = useState(null);
+    const [modalConfig, setModalConfig] = useState({ visible: false, action: null, title: '', content: '', id: null });
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         axios.get('http://localhost:5001/api/sales/sales').then(response => {
@@ -36,11 +41,51 @@ const SalesPage = () => {
         axios.get('http://localhost:5001/api/inventory/items').then(response => {
             setItems(response.data || []);
         });
+
+        const elems = document.querySelectorAll('.modal');
+        M.Modal.init(elems);
     }, []);
 
     useEffect(() => {
         calculateTotalPrice();
     }, [form.quantities, form.sellingPrices, form.discounts]);
+
+    useEffect(() => {
+        if (items.length > 0) {
+            fetchItemSalesQuantity();
+        }
+    }, [items]);
+
+    const fetchItemSalesQuantity = async () => {
+        try {
+            const response = await axios.get('http://localhost:5001/api/sales/sales');
+            const salesData = response.data || [];
+            const itemQuantities = {};
+
+            salesData.forEach(sale => {
+                Object.keys(sale.quantities).forEach(itemId => {
+                    if (!itemQuantities[itemId]) {
+                        itemQuantities[itemId] = 0;
+                    }
+                    itemQuantities[itemId] += sale.quantities[itemId];
+                });
+            });
+
+            setItemSalesQuantities(itemQuantities);
+        } catch (error) {
+            console.error('Failed to fetch sales data', error);
+        }
+    };
+
+    const validateForm = () => {
+        const newErrors = {};
+        if (!form.salesDate) newErrors.salesDate = 'Date is required';
+        if (!form.price && !form.giveAway) newErrors.price = 'Price is required';
+        if (!form.buyerDetails) newErrors.buyerDetails = 'Address is required';
+        if (!form.phoneNumber) newErrors.phoneNumber = 'Phone number is required';
+        if (form.itemIds.length === 0) newErrors.itemIds = 'At least one item code must be selected';
+        return newErrors;
+    };
 
     const handleSelectItem = (item) => {
         let newSelection, newQuantities, newSellingPrices, newDiscounts;
@@ -58,7 +103,19 @@ const SalesPage = () => {
             newSellingPrices = { ...form.sellingPrices, [item.id]: form.sellingPrices[item.id] || item.size };
             newDiscounts = { ...form.discounts, [item.id]: form.discounts[item.id] || 0 };
         }
+        const newErrors = { ...errors };
+        if (newSelection.length > 0) {
+            delete newErrors.itemIds;
+        }
         setForm({ ...form, itemIds: newSelection, quantities: newQuantities, sellingPrices: newSellingPrices, discounts: newDiscounts });
+        setErrors(newErrors);
+    };
+
+    const handleFieldChange = (field, value) => {
+        const newErrors = { ...errors };
+        delete newErrors[field];
+        setErrors(newErrors);
+        setForm({ ...form, [field]: value });
     };
 
     const handleQuantityChange = (e, id) => {
@@ -94,27 +151,20 @@ const SalesPage = () => {
     };
 
     const handleAdd = () => {
-        const systemDate = new Date().toISOString();
-        const newSale = { ...form, id: Date.now(), salesStatus: 'SP', systemDate }; // Ensure new sales are set to "SP" and include system date
-        axios.post('http://localhost:5001/api/sales/sales', newSale).then(() => {
-            
-            items.map(item => {
-                Object.keys(form.quantities).forEach(itemId => {
-                    if(itemId == item.id){
-      //                  const originalInventory = parseInt(item.quantity) || 0;
-                        const currentBalance = parseInt(item.type) || 0;
-                        const thisItemQuantity = parseInt(form.quantities[itemId]) || 0;
-                        item.type= currentBalance+thisItemQuantity;
-                        axios.put(`http://localhost:5001/api/inventory/items/${itemId}`, item).then(() => {
-                        });
-                    }
-                });
-            });
-            setSales([...sales, newSale]);
-            resetForm();
-        }).catch(error => {
-            console.error('Error adding sale:', error);
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+            return;
+        }
+
+        setModalConfig({
+            visible: true,
+            action: 'add',
+            title: 'Confirm Add',
+            content: 'Are you sure you want to add this sale?',
+            id: null
         });
+        openModal();
     };
 
     const handleEdit = (id) => {
@@ -128,6 +178,7 @@ const SalesPage = () => {
         });
         setIsEditing(true);
         setEditId(id);
+        window.scrollTo(0, 0); // Scroll to top when editing
     };
 
     const handleGiveAwayChange = (e) => {
@@ -136,39 +187,78 @@ const SalesPage = () => {
             giveAway: e.target.checked, 
             price: e.target.checked ? '' : form.price 
         });
+        if (e.target.checked) {
+            const newErrors = { ...errors };
+            delete newErrors.price;
+            setErrors(newErrors);
+        }
     };
 
     const handleUpdate = () => {
-        const updatedSale = { ...form, id: editId, salesStatus: 'SP' }; // Maintain status as "SP" on update
-        axios.put(`http://localhost:5001/api/sales/sales/${editId}`, updatedSale).then(() => {
-            setSales(sales.map(sale => sale.id === editId ? updatedSale : sale));
-            resetForm();
-        }).catch(error => {
-            console.error('Error updating sale:', error);
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+            return;
+        }
+
+        setModalConfig({
+            visible: true,
+            action: 'update',
+            title: 'Confirm Update',
+            content: 'Are you sure you want to update this sale?',
+            id: editId
         });
+        openModal();
     };
 
     const handleDelete = (id) => {
-        if (window.confirm("Are you sure you want to delete this item?")) {
-            axios.delete(`http://localhost:5001/api/sales/sales/${id}`).then(() => {
-                items.map(item => {
-                    Object.keys(form.quantities).forEach(itemId => {
-                        if(itemId == item.id){
-                //            const originalInventory = parseInt(item.quantity) || 0;
-                            const currentBalance = parseInt(item.type) || 0;
-                            const thisItemQuantity = parseInt(form.quantities[itemId]) || 0;
-                            item.type= currentBalance-thisItemQuantity;
-                            axios.put(`http://localhost:5001/api/inventory/items/${itemId}`, item).then(() => {
-                            });
-                        }
-                    });
-                });
-                setSales(sales.filter(sale => sale.id !== id));
+        setModalConfig({
+            visible: true,
+            action: 'delete',
+            title: 'Confirm Delete',
+            content: 'Are you sure you want to delete this sale?',
+            id
+        });
+        openModal();
+    };
+
+    const openModal = () => {
+        const elem = document.getElementById('confirm-modal');
+        const instance = M.Modal.getInstance(elem);
+        instance.open();
+    };
+
+    const handleConfirm = () => {
+        if (modalConfig.action === 'add') {
+            const systemDate = new Date().toISOString();
+            const newSale = { ...form, id: Date.now(), salesStatus: 'SP', systemDate }; // Ensure new sales are set to "SP" and include system date
+            axios.post('http://localhost:5001/api/sales/sales', newSale).then(() => {
+                setSales([...sales, newSale]);
+                resetForm();
+            }).catch(error => {
+                console.error('Error adding sale:', error);
+            });
+        } else if (modalConfig.action === 'update') {
+            const updatedSale = { ...form, id: editId, salesStatus: 'SP' }; // Maintain status as "SP" on update
+            axios.put(`http://localhost:5001/api/sales/sales/${editId}`, updatedSale).then(() => {
+                setSales(sales.map(sale => sale.id === editId ? updatedSale : sale));
+                resetForm();
+            }).catch(error => {
+                console.error('Error updating sale:', error);
+            });
+        } else if (modalConfig.action === 'delete') {
+            axios.delete(`http://localhost:5001/api/sales/sales/${modalConfig.id}`).then(() => {
+                setSales(sales.filter(sale => sale.id !== modalConfig.id));
                 resetForm(); // Reset form to add mode after deletion
             }).catch(error => {
                 console.error('Error deleting sale:', error);
             });
         }
+        setModalConfig({ visible: false, action: null, title: '', content: '', id: null });
+    };
+
+    const handleCancel = () => {
+        setModalConfig({ visible: false, action: null, title: '', content: '', id: null });
     };
 
     const resetForm = () => {
@@ -187,6 +277,7 @@ const SalesPage = () => {
         });
         setIsEditing(false); // Reset editing state
         setEditId(null); // Reset editId
+        setErrors({});
     };
 
     const handleRemoveItem = (id) => {
@@ -198,6 +289,12 @@ const SalesPage = () => {
         delete newSellingPrices[id];
         delete newDiscounts[id];
         setForm({ ...form, itemIds: newSelection, quantities: newQuantities, sellingPrices: newSellingPrices, discounts: newDiscounts });
+
+        const newErrors = { ...errors };
+        if (newSelection.length === 0) {
+            newErrors.itemIds = 'At least one item code must be selected';
+        }
+        setErrors(newErrors);
     };
 
     return (
@@ -209,56 +306,57 @@ const SalesPage = () => {
                         selectedItems={form.itemIds} 
                         onSelectItem={handleSelectItem} 
                     />
+                    {errors.itemIds && <span className="error-message red-text">{errors.itemIds}</span>}
                     <div className="form-group selected-items">
                         <div className="selected-items-grid">
                             {form.itemIds.map(id => {
                                 const selectedItem = items.find(item => item.id === id);
                                 const originalInventory = parseInt(selectedItem.quantity);
-                                const reducedInventory = parseInt(selectedItem.type) || 0;
-                                const balance = originalInventory-reducedInventory;
+                                const reducedInventory = itemSalesQuantities[id] || 0;
+                                const balance = originalInventory - reducedInventory;
                                 return (
                                     <div key={id} className="selected-card">
                                         {selectedItem && (
-                                            
                                             <div>
                                               <div>
-                                                <div class="left left-align">{selectedItem.code}</div>
-                                                <div class="right right-align">  <IconHyperlink
-                                                                        href="#"
-                                                                        onClick={() => handleRemoveItem(id)}
-                                                                        icon="close"
-                                                                        iconSize="small"
-                                                                        additionalClasses="black-text"
-                                                                    />
+                                                <div className="left left-align">{selectedItem.code}</div>
+                                                <div className="right right-align">  
+                                                    <IconHyperlink
+                                                        href="#"
+                                                        onClick={() => handleRemoveItem(id)}
+                                                        icon="close"
+                                                        iconSize="small"
+                                                        additionalClasses="black-text"
+                                                    />
+                                                </div>
                                               </div>
-                                             </div>
-                                             <img src={selectedItem.image} alt="Item" className="selected-item-thumbnail" />
-                                             <ul class="collection">
-                                                <li class="collection-item">{selectedItem.price}{"  ₹"}</li>
-                                        <li class="collection-item">{balance}</li>
-                                            </ul>
+                                              <img src={selectedItem.image} alt="Item" className="selected-item-thumbnail" />
+                                              <ul className="collection">
+                                                <li className="collection-item">{selectedItem.price}{"  ₹"}</li>
+                                                <li className="collection-item">Balance: {balance}</li>
+                                              </ul>
                                             </div>
                                         )}
                                         <div className="form-group-inline">
-
-                                        <NumberInput
-                                            icon="#"
-                                            name={`quantity-${id}`}
-                                            value={form.quantities[id]}
-                                            onChange={(e) => handleQuantityChange(e, id)}
-                                        />
-                                                                <MoneyInput
-                                            icon="₹"
-                                            name={`sellingPrice-${id}`}
-                                            value={form.sellingPrices[id]?form.sellingPrices[id]:selectedItem.size}
-                                            onChange={(e) => handleSellingPriceChange(e, id)}
-                                        />
-                                                                <NumberInput
-                                            icon="%"
-                                            name={`discount-${id}`}
-                                            value={form.discounts[id]}
-                                            onChange={(e) => handleDiscountChange(e, id)}
-                                        />
+                                            <NumberInput
+                                                icon="#"
+                                                name={`quantity-${id}`}
+                                                value={form.quantities[id]}
+                                                onChange={(e) => handleQuantityChange(e, id)}
+                                                range={parseInt(balance)}
+                                            />
+                                            <MoneyInput
+                                                icon="₹"
+                                                name={`sellingPrice-${id}`}
+                                                value={form.sellingPrices[id] ? form.sellingPrices[id] : selectedItem.size}
+                                                onChange={(e) => handleSellingPriceChange(e, id)}
+                                            />
+                                            <NumberInput
+                                                icon="%"
+                                                name={`discount-${id}`}
+                                                value={form.discounts[id]}
+                                                onChange={(e) => handleDiscountChange(e, id)}
+                                            />
                                         </div>
                                         <span className="item-final-price">
                                             Final Price: {calculateFinalPrice(id)}
@@ -271,35 +369,39 @@ const SalesPage = () => {
                     <div>
                         <DatePicker
                             label="Date"
-                            name="purchaseDate"
+                            name="salesDate"
                             value={form.salesDate}
-                            onChange={(e) => setForm({ ...form, salesDate: e.target.value })}
+                            onChange={(e) => handleFieldChange('salesDate', e.target.value)}
                         />
+                        {errors.salesDate && <span className="error-message red-text">{errors.salesDate}</span>}
                     </div>
                     <div>
                         <MoneyInput
                             icon="₹"
                             name="price"
                             value={form.price}
-                            onChange={(e) => setForm({ ...form, price: e.target.value })} 
+                            onChange={(e) => handleFieldChange('price', e.target.value)} 
                         />
+                        {errors.price && <span className="error-message red-text">{errors.price}</span>}
                     </div>
                     <div>
                         <TextAreaField
                             id="buyerDetails"
                             value={form.buyerDetails}
-                            onChange={(e) => setForm({ ...form, buyerDetails: e.target.value })}
+                            onChange={(e) => handleFieldChange('buyerDetails', e.target.value)}
                             label="Address"
                             maxLength={120}
                         />
+                        {errors.buyerDetails && <span className="error-message red-text">{errors.buyerDetails}</span>}
                     </div>
                     <div>
                         <NumberInput
                             icon="local_phone"
                             name="phoneNumber"
                             value={form.phoneNumber}
-                            onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
+                            onChange={(e) => handleFieldChange('phoneNumber', e.target.value)}
                         />
+                        {errors.phoneNumber && <span className="error-message red-text">{errors.phoneNumber}</span>}
                     </div>
                     <div>
                         <FormCheckbox
@@ -354,6 +456,13 @@ const SalesPage = () => {
                         ))}
                 </ul>
             </div>
+            <ModalBox
+                id="confirm-modal"
+                title={modalConfig.title}
+                content={modalConfig.content}
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+            />
         </div>
     );
 };
