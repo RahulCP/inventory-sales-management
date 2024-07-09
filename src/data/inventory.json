@@ -585,15 +585,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
-      "date": "",
+      "size": "850",
+      "date": "2024-06-08",
       "price": "510",
       "quantity": "4",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-NC-1469.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-08",
       "boxNo": "14",
-      "systemDate": "2024-06-30T11:11:16.756Z"
+      "systemDate": "2024-07-09T01:20:45.223Z"
     },
     {
       "id": 1719745946287,
@@ -806,15 +806,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "700",
       "date": "",
-      "price": "",
-      "quantity": "6",
+      "price": "380",
+      "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-P-SET-733.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-08",
       "boxNo": "9",
-      "systemDate": "2024-06-30T11:29:40.110Z"
+      "systemDate": "2024-07-08T03:19:34.188Z"
     },
     {
       "id": 1719747021591,
@@ -823,15 +823,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "775",
       "date": "",
       "price": "455",
       "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-1412-GOLD.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-08",
       "boxNo": "9",
-      "systemDate": "2024-06-30T11:30:21.591Z"
+      "systemDate": "2024-07-08T03:08:27.122Z"
     },
     {
       "id": 1719747076529,
@@ -925,15 +925,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "605",
       "date": "",
       "price": "285",
       "quantity": "3",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-272.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-08",
       "boxNo": "10",
-      "systemDate": "2024-06-30T11:36:27.092Z"
+      "systemDate": "2024-07-08T03:05:54.667Z"
     },
     {
       "id": 1719747407230,
@@ -942,15 +942,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
-      "date": "",
+      "size": "605",
+      "date": "2024-06-08",
       "price": "285",
       "quantity": "5",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AD-NC-272-GREEN.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-08",
       "boxNo": "10",
-      "systemDate": "2024-06-30T11:36:47.230Z"
+      "systemDate": "2024-07-08T03:05:29.651Z"
     },
     {
       "id": 1719747460439,
@@ -1061,15 +1061,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "700",
       "date": "",
       "price": "380",
-      "quantity": "5",
+      "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-P-SET-732-GOLD.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-08",
       "boxNo": "12",
-      "systemDate": "2024-06-30T11:42:32.961Z"
+      "systemDate": "2024-07-08T03:18:02.813Z"
     },
     {
       "id": 1719747784546,
@@ -1299,15 +1299,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
-      "date": "",
+      "size": "280",
+      "date": "2024-06-08",
       "price": "78",
       "quantity": "10",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/JUMKA-1.JPG",
-      "publish": false,
-      "publishedDate": "",
-      "boxNo": "",
-      "systemDate": "2024-06-30T12:45:11.750Z"
+      "publish": true,
+      "publishedDate": "2024-07-09",
+      "boxNo": "15",
+      "systemDate": "2024-07-09T01:36:20.379Z"
     },
     {
       "id": 1719751623472,
@@ -1376,6 +1376,23 @@
       "publishedDate": "",
       "boxNo": "5",
       "systemDate": "2024-07-04T09:10:11.162Z"
+    },
+    {
+      "id": 1720451901049,
+      "code": "PreviousSaleJune",
+      "category": "",
+      "style": "",
+      "color": "",
+      "type": "",
+      "size": "40705",
+      "date": "2024-06-22",
+      "price": "23059",
+      "quantity": "65",
+      "image": "",
+      "publish": false,
+      "publishedDate": "",
+      "boxNo": "",
+      "systemDate": "2024-07-08T15:19:07.471Z"
     }
   ]
 }

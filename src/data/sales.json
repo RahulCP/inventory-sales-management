@@ -18,7 +18,7 @@
       "buyerDetails": "Jaaz Nalil Pothen\nUsha Villa\nManjadi PO\nThiruvalla\nPIN 689105\nPathanamthitta\n9446231869",
       "phoneNumber": "9446231869",
       "salesStatus": "SD",
-      "systemDate": "2024-07-02T06:47:18.562Z",
+      "systemDate": "2024-07-08T11:37:51.355Z",
       "giveAway": false,
       "id": 1719887925522,
       "shipmentDate": "2024-07-02",
@@ -167,7 +167,7 @@
       "systemDate": "2024-07-02T06:48:24.420Z",
       "giveAway": false,
       "id": 1719899542573,
-      "shipmentDate": "",
+      "shipmentDate": "2024-07-02",
       "shipmentPrice": "30",
       "shipmentMethod": "",
       "trackingId": ""
@@ -457,7 +457,7 @@
       "discounts": {
         "1719744509718": 0
       },
-      "salesDate": "2024-04-04",
+      "salesDate": "2024-07-04",
       "price": "640.00",
       "buyerDetails": "Indulekha V\nTwinsnivas \nThuravoor P O \nCherthala Alappuzha Kerala \n688532\n",
       "phoneNumber": "6282034500",
@@ -483,7 +483,7 @@
       "discounts": {
         "1719751123303": 15
       },
-      "salesDate": "2024-04-05",
+      "salesDate": "2024-07-05",
       "price": "1015.75",
       "buyerDetails": "Dhanya J B\n'Surabhi', Cheenivila, Maruthoor Road, \nMukkolakkal, Kallayam P O, \nTrivandrum-695043",
       "phoneNumber": "8281403848",
@@ -773,10 +773,14 @@
       "price": "580.00",
       "buyerDetails": "Gowri Krishna,\nTC 71/2526 \nNavaneetham Pumbing Station Road Chalai Opposite Chalai Girls High School. 695036 Thiruvananthapuram ",
       "phoneNumber": "9446093264",
-      "salesStatus": "SP",
-      "systemDate": "2024-07-07T15:55:45.756Z",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-08T10:20:03.673Z",
       "giveAway": false,
-      "id": 1720367745756
+      "id": 1720367745756,
+      "shipmentDate": "2024-07-08",
+      "shipmentPrice": "30",
+      "shipmentMethod": "1",
+      "trackingId": ""
     },
     {
       "itemIds": [
@@ -795,10 +799,14 @@
       "price": "1010",
       "buyerDetails": "Asmiya.Rijas\nRijas manzil\nChempu.PO, vaikom, Kottayam, Kerala\n686608\n",
       "phoneNumber": "9633740788",
-      "salesStatus": "SP",
-      "systemDate": "2024-07-07T15:59:21.976Z",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-08T10:20:15.816Z",
       "giveAway": false,
-      "id": 1720367961976
+      "id": 1720367961976,
+      "shipmentDate": "2024-07-06",
+      "shipmentPrice": "41",
+      "shipmentMethod": "1",
+      "trackingId": ""
     },
     {
       "itemIds": [
@@ -817,10 +825,14 @@
       "price": "640.00",
       "buyerDetails": "Jyothy Rameshkumar\nMuriyankattil House, \n\"Kannanunni\"\nEdakulam P.O, Irinjalakuda \nThrissur-PIN-680688 \n",
       "phoneNumber": "9446928890",
-      "salesStatus": "SP",
-      "systemDate": "2024-07-07T16:12:38.559Z",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-08T10:20:35.720Z",
       "giveAway": false,
-      "id": 1720368758559
+      "id": 1720368758559,
+      "shipmentDate": "2024-07-08",
+      "shipmentPrice": "47",
+      "shipmentMethod": "1",
+      "trackingId": ""
     },
     {
       "itemIds": [
@@ -839,10 +851,154 @@
       "price": "700.00",
       "buyerDetails": "krishnakripa ,MSRA-2E,\nThachottukavu \nMalayinkeezhu \nDistrict: Thiruvananthapuram,\nState: kerala\nPincode : 695571\n",
       "phoneNumber": "7094807418",
-      "salesStatus": "SP",
-      "systemDate": "2024-07-07T16:13:57.430Z",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-08T10:21:18.454Z",
       "giveAway": false,
-      "id": 1720368837430
+      "id": 1720368837430,
+      "shipmentDate": "2024-07-08",
+      "shipmentPrice": "41",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1720451901049
+      ],
+      "quantities": {
+        "1720451901049": 1
+      },
+      "sellingPrices": {
+        "1720451901049": "40705"
+      },
+      "discounts": {
+        "1720451901049": 0
+      },
+      "salesDate": "2024-06-29",
+      "price": "40705.00",
+      "buyerDetails": "Arunima",
+      "phoneNumber": "4343434343",
+      "salesStatus": "SD",
+      "systemDate": "2024-07-08T15:56:24.724Z",
+      "giveAway": false,
+      "id": 1720451978056,
+      "shipmentDate": "2024-06-29",
+      "shipmentPrice": "2783",
+      "shipmentMethod": "1",
+      "trackingId": ""
+    },
+    {
+      "itemIds": [
+        1719745876756
+      ],
+      "quantities": {
+        "1719745876756": 1
+      },
+      "sellingPrices": {
+        "1719745876756": "850"
+      },
+      "discounts": {
+        "1719745876756": 0
+      },
+      "salesDate": "2024-07-08",
+      "price": "850.00",
+      "buyerDetails": "Divyasree Sharin  \nchinnangath house\np o pullur \nUrakkam\npin 680683\n",
+      "phoneNumber": "9656774119",
+      "salesStatus": "SP",
+      "systemDate": "2024-07-09T01:22:13.841Z",
+      "giveAway": false,
+      "id": 1720488133841
+    },
+    {
+      "itemIds": [
+        1719746980110,
+        1719747387092
+      ],
+      "quantities": {
+        "1719746980110": 1,
+        "1719747387092": 1
+      },
+      "sellingPrices": {
+        "1719746980110": "700",
+        "1719747387092": "605"
+      },
+      "discounts": {
+        "1719746980110": 15,
+        "1719747387092": 15
+      },
+      "salesDate": "2024-07-09",
+      "price": "1100",
+      "buyerDetails": "ANUPA S\nTC 8/837 VAIKONATH HOUSE\nARAYALOOR \nTHIRUMALA 695006\n9072240470\n",
+      "phoneNumber": "9072240470",
+      "salesStatus": "SP",
+      "systemDate": "2024-07-09T01:28:38.368Z",
+      "giveAway": false,
+      "id": 1720488518368
+    },
+    {
+      "itemIds": [
+        1719744022388
+      ],
+      "quantities": {
+        "1719744022388": 1
+      },
+      "sellingPrices": {
+        "1719744022388": "700"
+      },
+      "discounts": {
+        "1719744022388": 0
+      },
+      "salesDate": "2024-07-09",
+      "price": "700.00",
+      "buyerDetails": "Della Anex \nKurishingal house \nPerumbaikadu p o \nKottayam 686016\n",
+      "phoneNumber": "9995730611",
+      "salesStatus": "SP",
+      "systemDate": "2024-07-09T01:32:03.013Z",
+      "giveAway": false,
+      "id": 1720488723013
+    },
+    {
+      "itemIds": [
+        1719745549062
+      ],
+      "quantities": {
+        "1719745549062": 2
+      },
+      "sellingPrices": {
+        "1719745549062": "530"
+      },
+      "discounts": {
+        "1719745549062": 15
+      },
+      "salesDate": "2024-07-09",
+      "price": "901.00",
+      "buyerDetails": "Geethu. P. G\nKarthika\nNedumparambu. P. O\nAlamcode\nAttingal, 695102\n",
+      "phoneNumber": "9497268119",
+      "salesStatus": "SP",
+      "systemDate": "2024-07-09T01:34:56.764Z",
+      "giveAway": false,
+      "id": 1720488896764
+    },
+    {
+      "itemIds": [
+        1719751511750
+      ],
+      "quantities": {
+        "1719751511750": 1
+      },
+      "sellingPrices": {
+        "1719751511750": "280"
+      },
+      "discounts": {
+        "1719751511750": 0
+      },
+      "salesDate": "2024-07-09",
+      "price": "280.00",
+      "buyerDetails": "Sreevidya Rahul \nMangalath House \nPoovathussery po \nPalipuzha kappela Road\nThrissur Dist \nPin 680741\n",
+      "phoneNumber": "9605612431",
+      "salesStatus": "SP",
+      "systemDate": "2024-07-09T01:37:03.514Z",
+      "giveAway": false,
+      "id": 1720489023514
     }
   ]
 }

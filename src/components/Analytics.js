@@ -6,6 +6,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const AnalyticsPage = () => {
     const [sales, setSales] = useState([]);
+    const [inventory, setInventory] = useState([]);
     const [activeTab, setActiveTab] = useState('salesPrice');
     const [salesDataStartDate, setSalesDataStartDate] = useState('');
     const [salesDataEndDate, setSalesDataEndDate] = useState('');
@@ -13,16 +14,30 @@ const AnalyticsPage = () => {
     const [salesCountEndDate, setSalesCountEndDate] = useState('');
     const [shipmentStatusStartDate, setShipmentStatusStartDate] = useState('');
     const [shipmentStatusEndDate, setShipmentStatusEndDate] = useState('');
+    const [profitStartDate, setProfitStartDate] = useState('');
+    const [profitEndDate, setProfitEndDate] = useState('');
     const [filteredSalesData, setFilteredSalesData] = useState([]);
     const [filteredSalesCount, setFilteredSalesCount] = useState([]);
     const [filteredShipmentStatus, setFilteredShipmentStatus] = useState([]);
-
+    const [filteredProfitSales, setFilteredProfitSales] = useState([]);
+    let sellingPrice=0;
+    let buyingPrice=0;
+    let totalQuantity=0;
+    let profit=0;
+    let shipmentTotal=0;
+    let boxCountPrice=0;
     useEffect(() => {
         axios.get('http://localhost:5001/api/sales/sales').then(response => {
             setSales(response.data);
             setDefaultDateRanges();
         }).catch(error => {
             console.error('Error fetching sales data:', error);
+        });
+
+        axios.get('http://localhost:5001/api/inventory/items').then(response => {
+            setInventory(response.data);
+        }).catch(error => {
+            console.error('Error fetching inventory data:', error);
         });
     }, []);
 
@@ -37,6 +52,8 @@ const AnalyticsPage = () => {
         setSalesCountEndDate(todayString);
         setShipmentStatusStartDate(last30Days);
         setShipmentStatusEndDate(todayString);
+        setProfitStartDate(last30Days);
+        setProfitEndDate(todayString);
     };
 
     useEffect(() => {
@@ -68,6 +85,43 @@ const AnalyticsPage = () => {
             setFilteredShipmentStatus(filtered);
         }
     }, [shipmentStatusStartDate, shipmentStatusEndDate, sales]);
+
+    useEffect(() => {
+        if (profitStartDate && profitEndDate) {
+            const filtered = sales.filter(sale => {
+                const saleDate = new Date(sale.salesDate);
+                return saleDate >= new Date(profitStartDate) && saleDate <= new Date(profitEndDate);
+            });
+            setFilteredProfitSales(filtered);
+        }
+    }, [profitStartDate, profitEndDate, sales]);
+
+
+
+    const calculateProfitData = () => {
+        filteredProfitSales.map(sale => {
+
+            let price = sale.itemIds.map(id => inventory.find(item => item.id === id)?.price);
+            
+
+            Object.keys(sale.quantities).forEach(key => {
+                totalQuantity += parseInt(sale.quantities[key]);
+                sellingPrice += parseInt(sale.sellingPrices[key]);
+                shipmentTotal+=parseInt(sale.shipmentPrice?sale.shipmentPrice:0)
+            });
+            price.map((pric, index) => {
+                buyingPrice+= parseInt(pric);
+            });
+            boxCountPrice=boxCountPrice+1;
+    }  ); 
+    sellingPrice = sellingPrice.toFixed(2);
+    buyingPrice = buyingPrice.toFixed(2);
+    boxCountPrice= boxCountPrice*20;
+    profit= (((sellingPrice-buyingPrice-shipmentTotal-boxCountPrice)/buyingPrice)*100).toFixed(2);
+
+    }
+
+
 
     const salesData = {
         labels: filteredSalesData.map(sale => sale.salesDate),
@@ -126,12 +180,50 @@ const AnalyticsPage = () => {
         setActiveTab(tab);
     };
 
+    const getProfitData = () => {
+        return filteredProfitSales.map(sale => {
+            let quantities = 0;
+            let quantitiesString = "";
+            let sellingPriceString = "";
+            let name = sale.itemIds.map(id => inventory.find(item => item.id === id)?.code).join("---");
+            let imageArray = sale.itemIds.map(id => inventory.find(item => item.id === id)?.image);
+
+            Object.keys(sale.quantities).forEach(key => {
+                quantities += parseInt(sale.quantities[key]);
+                quantitiesString += sale.quantities[key] + "-";
+                sellingPriceString += sale.sellingPrices[key] + "-";
+            });
+            sellingPrice= sellingPrice+parseInt(sale.price);
+            return (
+                <tr key={sale.id}>
+                    <td>
+                        {imageArray.map((image, index) => (
+                            <img key={index} src={image} alt="Item" style={{ width: '100px', height: '100px' }} />
+                        ))}
+                        <br />
+                        {name ? name : 'Unknown'}
+                        <br />
+                        {quantitiesString}
+                        <br />
+                        {sellingPriceString}
+                    </td>
+                    <td>{quantities}</td>
+                    <td>{sale.price}</td>
+                    <td>{sale.salesDate}</td>
+                    <td>{sale.shipmentPrice}</td>
+                    <td>{sale.shipmentDate}</td>
+                </tr>
+            );
+        });
+    };
+
     return (
         <div>
             <div className="tabs">
                 <button className={`btn ${activeTab === 'salesPrice' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesPrice')}>Sales Price</button>
                 <button className={`btn ${activeTab === 'salesCount' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('salesCount')}>Sales Count</button>
                 <button className={`btn ${activeTab === 'shipmentStatus' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('shipmentStatus')}>Shipment Status</button>
+                <button className={`btn ${activeTab === 'profit' ? 'btn-primary' : 'btn-secondary'}`} onClick={() => handleTabClick('profit')}>Profit</button>
             </div>
 
             {activeTab === 'salesPrice' && (
@@ -169,6 +261,59 @@ const AnalyticsPage = () => {
                         <input type="date" value={shipmentStatusEndDate} onChange={(e) => setShipmentStatusEndDate(e.target.value)} />
                     </div>
                     <Pie data={shipmentStatusPieData} options={options} plugins={[ChartDataLabels]} />
+                </div>
+            )}
+
+            {activeTab === 'profit' && (
+
+                <div>
+                                           <tbody>
+                       {calculateProfitData()}
+                   </tbody>
+                    <h2>Profit</h2>
+                    <div>
+                        <label>Start Date:</label>
+                        <input type="date" value={profitStartDate} onChange={(e) => setProfitStartDate(e.target.value)} />
+                        <label>End Date:</label>
+                        <input type="date" value={profitEndDate} onChange={(e) => setProfitEndDate(e.target.value)} />
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Buying Price</th>
+                                <th>Selling Price</th>
+                                <th>Shipment</th>
+                                <th>Packaging</th>
+                                <th>quantity</th>
+                                <th>Profit Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{buyingPrice}</td>
+                                <td>{sellingPrice}</td>
+                                <td>{shipmentTotal}</td>
+                                <td>{boxCountPrice}</td>
+                                <td>{totalQuantity}</td>
+                                <td>{profit}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Selling Price</th>
+                                <th>Selling Date</th>
+                                <th>Shipment Price</th>
+                                <th>Shipment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {getProfitData()}
+                        </tbody>
+                    </table>
                 </div>
             )}
         </div>
