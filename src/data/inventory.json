@@ -500,15 +500,15 @@
       "style": "1",
       "color": "4",
       "type": 2,
-      "size": "530",
+      "size": "610",
       "date": "",
-      "price": "210",
-      "quantity": "5",
+      "price": "290",
+      "quantity": "6",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/NO-CODE-2.jpg",
       "publish": false,
       "publishedDate": "",
       "boxNo": "4",
-      "systemDate": "2024-07-02T03:14:50.020Z"
+      "systemDate": "2024-07-10T05:53:30.885Z"
     },
     {
       "id": 1719745633903,
@@ -1163,15 +1163,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
+      "size": "812",
       "date": "",
       "price": "460",
-      "quantity": "3",
+      "quantity": "2",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/NO-CODE-14.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-06-28",
       "boxNo": "13",
-      "systemDate": "2024-06-30T11:46:22.705Z"
+      "systemDate": "2024-07-10T05:24:44.264Z"
     },
     {
       "id": 1719748014578,
@@ -1197,15 +1197,15 @@
       "style": "",
       "color": "",
       "type": "",
-      "size": "",
-      "date": "",
+      "size": "770",
+      "date": "2024-06-08",
       "price": "430",
-      "quantity": "1",
+      "quantity": "2",
       "image": "http://localhost:5001/images/NAVKAR-12-6-24/AN-P-SET-739.jpg",
-      "publish": false,
-      "publishedDate": "",
+      "publish": true,
+      "publishedDate": "2024-07-02",
       "boxNo": "13",
-      "systemDate": "2024-06-30T12:14:31.071Z"
+      "systemDate": "2024-07-10T05:19:58.721Z"
     },
     {
       "id": 1719751024907,
